@@ -21,32 +21,24 @@ t_editor *init_editor()
 	return (new);
 }
 
-void	add_to_string(t_string **s, char c)
+void	add_to_string(t_editor *ed, char c)
 {
 	t_string *new;
 
+	ed->cursor_position++;
+	ed->need_refresh = true;
 	new = memalloc_or_die(sizeof(t_string));
 	new->c = c;
 
-	if (!s)
+	if (!ed->string)
 	{
-		s = &new;
+		ed->string = new;
 	}
 	else
 	{
-		list_push_back((t_abstract_list **)s, (t_abstract_list *)new);
+		list_push_back((t_abstract_list **)ed->string, (t_abstract_list *)new);
 	}
 }
-
-// void print_string(t_string *s)
-// {
-// 	while (s)
-// 	{
-// 		ft_putchar(s->c);
-// 		s = s->next;
-// 	}
-// 	ft_putchar('\n');
-// }
 
 char *get_string_from_list(t_string *s)
 {
@@ -82,7 +74,8 @@ void	ft_clear_line(t_string *s)
 	while (s)
 	{
 		ft_putstr(move_left);
-		ft_putstr(tgetstr("cd", NULL));
 		s = s->next;
 	}
+	ft_putstr(tgetstr("cr", NULL));
+	ft_putstr(tgetstr("ce", NULL));
 }

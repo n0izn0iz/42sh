@@ -14,6 +14,7 @@ typedef struct			s_string
 typedef struct			s_term
 {
 	int					width;
+	char				*move_cursor_begining;
 	char				*move_left;
 	char				*move_right;
 	char				*hide_cursor;

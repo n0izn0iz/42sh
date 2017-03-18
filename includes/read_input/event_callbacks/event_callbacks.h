@@ -27,4 +27,6 @@ EV_CB_RET 	event_cancel(EV_CB_ARGS);
 EV_CB_RET 	event_exit(EV_CB_ARGS);
 EV_CB_RET 	event_delete(EV_CB_ARGS);
 
+void	restore_old_cursor_position(t_editor *ed, int old_position);
+
 #endif

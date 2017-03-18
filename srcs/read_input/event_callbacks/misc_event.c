@@ -2,7 +2,9 @@
 #include <libft.h>
 
 EV_CB_RET 	event_newline(EV_CB_ARGS)
-{(void)ed;}
+{
+	(void)ed;
+}
 
 EV_CB_RET 	event_cancel(EV_CB_ARGS)
 {(void)ed;}
