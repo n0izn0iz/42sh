@@ -53,16 +53,6 @@ void	add_to_string(t_editor *ed, char c)
 	ed->cursor_position++;
 }
 
-void print_string(t_string *s)
-{
-	while (s)
-	{
-		ft_putchar(s->c);
-		s = s->next;
-	}
-	// ft_putchar('\n');
-}
-
 char *get_string_from_list(t_string *s)
 {
 	char 	*str;

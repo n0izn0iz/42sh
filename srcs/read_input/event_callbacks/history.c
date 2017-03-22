@@ -31,7 +31,6 @@ EV_CB_RET 	event_history_up(EV_CB_ARGS)
 		ed->need_refresh = true;
 		list_free((t_abstract_list **)&ed->string);
 		str_to_list(ed, ed->history->line);
-		print_string(ed->string);
 		if (ed->history->prev)
 			ed->history = ed->history->prev;
 	}
@@ -45,7 +44,5 @@ EV_CB_RET 	event_history_down(EV_CB_ARGS)
 	{
 		ed->history = ed->history->next;
 		str_to_list(ed, ed->history->line);
-		print_string(ed->string);
-
 	}
 }
