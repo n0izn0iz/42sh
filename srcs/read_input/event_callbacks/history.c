@@ -48,13 +48,13 @@ EV_CB_RET 	event_history_down(EV_CB_ARGS)
 	char	*trimed;
 
 	list_free((t_abstract_list **)&ed->string);
+	clear_line(ed);
 	if (ed->history && ed->history->next)
 	{
-		clear_line(ed);
 		ed->history = ed->history->next;
 		trimed = ft_strtrim(ed->history->line);
 		str_to_list(ed, trimed);
 		free(trimed);
-		put_line(ed);
 	}
+	put_line(ed);
 }
