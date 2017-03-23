@@ -9,5 +9,10 @@ void		add_to_string(t_editor *ed, char c);
 char		*get_string_from_list(t_string *s);
 void		free_string(t_string *s);
 char		*gen_prompt(void);
+void		move_start(t_editor *ed);
+void		restore_old_cursor_position(t_editor *ed);
+void		refresh_line(t_editor *);
+void		clear_line(t_editor *);
+void		put_line(t_editor *);
 
 #endif

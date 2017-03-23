@@ -37,6 +37,7 @@ typedef struct			s_editor
 	t_term				*term;
 	t_history			*history;
 	int					cursor_position;
+	int					old_position;
 	int					string_size;
 	int					prompt_size;
 	char				*prompt;
