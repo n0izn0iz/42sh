@@ -25,7 +25,7 @@ char	*ft_strtrim(char const *s)
 	end = ft_strlen(s) - 1;
 	while (s[end] == 9 || s[end] == 10 || s[end] == 32)
 		end--;
-	if (end < 0)
-		end = 0;
+	if (end == (int)ft_strlen(s))
+		return (ft_strdup(""));
 	return (ft_strsub(s, i, end - i + 1));
 }
