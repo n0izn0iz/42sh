@@ -1,14 +1,11 @@
 # include <libft.h>
 # include "read_input/event_callbacks/event_callback_def.h"
 
-// void		print_cursor_vector(t_editor *ed);
-
 void move_start(EV_CB_ARGS)
 {
 	t_vec2i	vec;
 
 	vec = get_cursor_vector(ed);
-	// print_cursor_vector(ed);
 
 	if (vec.x > 0)
 	{
@@ -23,42 +20,27 @@ void move_start(EV_CB_ARGS)
 	ft_putstr(ed->term->move_cursor_begining);
 }
 
-static void print_command_string(EV_CB_ARGS, char const *prompt, t_string *cmd_str
-	, size_t term_width)
+static void print_command_string(EV_CB_ARGS, size_t term_width)
 {
-	(void)term_width;
-	char	**lines;
-	char	*str;
-	char	*tmp;
 	size_t	u;
 
-	tmp = get_string_from_list(cmd_str);
-	str = ft_strjoin(prompt, tmp);
-	free(tmp);
-	lines = ft_strsplit(str, '\n');
-	free(str);
 	u = 0;
-	while (lines[u] != NULL)
+	while (ed->string_split[u] != NULL)
 	{
-		put_highlighted_line(ed, lines[u]);
-		if (ft_strlen(lines[u]) % term_width == 0)
+		put_highlighted_line(ed, ed->string_split[u]);
+		if (ft_strlen(ed->string_split[u]) % term_width == 0)
 			ft_putchar('\n');
-		if (lines[u + 1] != NULL)
+		if (ed->string_split[u + 1] != NULL)
 			ft_putchar('\n');
 		u++;
 	}
-	ft_freetabchar(lines);
 }
 
 void put_line(EV_CB_ARGS)
 {
-	char		*line;
-
-	print_command_string(ed, ed->prompt, ed->string, ed->term->width);
-	line = get_string_from_list(ed->string);
+	print_command_string(ed, ed->term->width);
 	ed->old_position = ed->cursor_position;
-	ed->cursor_position = ft_strlen(line);
-	free(line);
+	ed->cursor_position = ft_strlen(ed->string_cstr);
 }
 
 static void restore_old_cursor_position(EV_CB_ARGS, t_vec2i old_pos)
@@ -77,5 +59,6 @@ void refresh_line(EV_CB_ARGS)
 		restore_old_cursor_position(ed, get_cursor_vector(ed));
 		ed->cursor_position = ed->old_position;
 		ft_putstr(ed->term->show_cursor);
+		ft_freetabchar(ed->string_split);
 	}
 }

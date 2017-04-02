@@ -16,16 +16,22 @@ void put_highlighted_line(t_editor *ed, char* line)
 	end = ed->selected_string_end + offset;
 	cur = ed->cursor_position + offset;
 	i = -1;
-	while (line[++i])
+	if (ed->in_selection)
 	{
-		if (ed->in_selection &&
-			((i >= start && i < cur) || (i < start && i >= cur)))
+		while (line[++i])
 		{
-			ft_putcharc(4, 3, line[i]);
+			if ((i >= start && i < cur) || (i < start && i >= cur))
+			{
+				ft_putcharc(4, 3, line[i]);
+			}
+			else
+			{
+				ft_putchar(line[i]);
+			}
 		}
-		else
-		{
-			ft_putchar(line[i]);
-		}
+	}
+	else
+	{
+		ft_putstr(line);
 	}
 }

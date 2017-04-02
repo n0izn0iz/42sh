@@ -3,12 +3,13 @@
 
 bool		if_on_multiline(EV_CB_ARGS)
 {
-	char	*str;
+	// char	*str;
 	int		nb;
 
-	str = get_string_from_list(ed->string);
-	nb = ft_count_char(str, '\n');
-	free(str);
+	// str = get_string_from_list(ed->string);
+	// str = get_string_from_list(ed->string);
+	nb = ft_count_char(ed->string_cstr, '\n');
+	// free(str);
 	if (nb > 0)
 		return (true);
 	return (false);

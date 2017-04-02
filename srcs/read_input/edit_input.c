@@ -31,7 +31,6 @@ char 		*edit_input()
 	int							ret;
 	t_event_callback_def const	*def;
 	t_editor					*ed;
-	char						*line;
 
 	ft_start_termcaps();
 	ed = get_editor();
@@ -58,7 +57,6 @@ char 		*edit_input()
 	}
 
 	ft_close_termcaps();
-	line = get_string_from_list(ed->string);
 	free_editor(ed);
-	return (line);
+	return (ed->string_cstr);
 }

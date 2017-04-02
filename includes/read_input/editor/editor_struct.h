@@ -32,6 +32,8 @@ typedef struct			s_editor
 	size_t				selected_string_end;
 	char				*selected_string;
 	t_string			*string;
+	char				*string_cstr;
+	char				**string_split;
 	t_term				*term;
 	t_history			*history;
 	size_t				old_position;
