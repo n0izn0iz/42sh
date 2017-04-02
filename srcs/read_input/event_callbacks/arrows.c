@@ -1,31 +1,55 @@
-#include "event_callback_def.h"
-#include <libft.h>
+# include "event_callback_def.h"
+# include <libft.h>
 
-bool check_cursor_if_margin(EV_CB_ARGS)
+void		move_cursor(t_vec2i	vec, t_term *term)
 {
-	int md = (ed->cursor_position + ed->prompt_size) % ed->term->width; 
-	if (md == 0)
-		return (true);
-	return (false);
+	if (vec.x > 0)
+	{
+		while (vec.x-- > 0)
+			ft_putstr(term->move_left);
+	}
+	else if (vec.x < 0)
+	{
+		while (vec.x++ < 0)
+			ft_putstr(term->move_right);
+	}
+	if (vec.y > 0)
+	{
+		while (vec.y-- > 0)
+			ft_putstr(term->move_up);
+	}
+	else if (vec.y < 0)
+	{
+		while (vec.y++ < 0)
+			ft_putstr(term->move_down);
+	}
+}
+
+static void	cursor_left_core(EV_CB_ARGS)
+{
+	t_vec2i		cursor_vec;
+	t_vec2i		mov_vec;
+
+	if (ed->cursor_position > 0)
+	{
+		cursor_vec = get_cursor_vector(ed);
+		ed->cursor_position--;
+		mov_vec = vec2i_sub(cursor_vec, get_cursor_vector(ed));
+		move_cursor(mov_vec, ed->term);
+	}
 }
 
 EV_CB_RET 	event_cursor_left(EV_CB_ARGS)
 {
-	ed->need_refresh = true;
-	if (ed->cursor_position > 0)
+	cursor_left_core(ed);
+	if (ed->cursor_position == 0)
 	{
-		if (check_cursor_if_margin(ed))
-		{
-			ft_putstr(ed->term->move_up);
-			int i = -1;
-			while (++i != ed->term->width)
-				ft_putstr(ed->term->move_right);
-		}
-		else
-		{
-			ft_putstr(ed->term->move_left);
-		}
-		ed->cursor_position--;
+		ed->need_refresh = true;
+	}
+	else
+	{
+		cursor_left_core(ed);
+		event_cursor_right(ed);
 	}
 }
 
@@ -35,33 +59,35 @@ EV_CB_RET 	event_cursor_right(EV_CB_ARGS)
 	if (ed->cursor_position < ed->string_size)
 	{
 		ed->cursor_position++;
-		if (check_cursor_if_margin(ed))
-			ft_putchar('\n');
-		else
-		{
-			ft_putstr(ed->term->move_right);
-		}
 	}
+}
+
+void move_cursor_to(t_vec2i old_pos, t_vec2i new_pos, t_term *term)
+{
+	move_cursor(vec2i_sub(old_pos, new_pos), term);
 }
 
 EV_CB_RET 	event_cursor_up(EV_CB_ARGS)
 {
-	int i;
+	t_vec2i pos;
 
-	i = -1;
-	while (++i < ed->term->width)
-	{
-		event_cursor_left(ed);
-	}
+	if (if_on_multiline(ed))
+		return ;
+
+	pos = get_cursor_vector(ed);
+	ed->cursor_position = find_index_at_vector(ed, pos.x, pos.y - 1);
+	move_cursor_to(pos, get_cursor_vector(ed), ed->term);
 }
 
 EV_CB_RET 	event_cursor_down(EV_CB_ARGS)
 {
-	int i;
+	t_vec2i pos;
 
-	i = -1;
-	while (++i < ed->term->width)
-	{
-		event_cursor_right(ed);
-	}
+	if (if_on_multiline(ed))
+		return ;
+
+	ed->need_refresh = true;
+	pos = get_cursor_vector(ed);
+	ed->cursor_position = find_index_at_vector(ed, pos.x, pos.y + 1);
+	move_cursor_to(pos, get_cursor_vector(ed), ed->term);
 }

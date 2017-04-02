@@ -44,9 +44,4 @@ void								print_event_callback_def(
 	t_event_callback_def const *def);
 void								print_event_callback_defs(void);
 
-bool 		check_cursor_if_margin(EV_CB_ARGS);
-
-
-
-
 #endif

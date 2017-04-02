@@ -13,7 +13,7 @@ void	list_free(t_abstract_list **list)
 	*list = NULL;
 }
 
-void	str_to_list(t_editor *ed, char *str)
+static void	str_to_list(EV_CB_ARGS, char *str)
 {
 	if (str == NULL)
 		return;
@@ -33,13 +33,15 @@ EV_CB_RET 	event_history_up(EV_CB_ARGS)
 	if (ed->history)
 	{
 		clear_selected_pos(ed);
-		ed->need_refresh = true;
+		clear_line(ed);
 		list_free((t_abstract_list **)&ed->string);
 		trimed = ft_strtrim(ed->history->line);
 		str_to_list(ed, trimed);
+		ed->string_size = list_count((t_abstract_list *)ed->string);
 		free(trimed);
 		if (ed->history->prev)
 			ed->history = ed->history->prev;
+		put_line(ed);
 	}
 }
 
@@ -48,13 +50,15 @@ EV_CB_RET 	event_history_down(EV_CB_ARGS)
 	char	*trimed;
 
 	clear_selected_pos(ed);
-	ed->need_refresh = true;
+	clear_line(ed);
 	list_free((t_abstract_list **)&ed->string);
 	if (ed->history && ed->history->next)
 	{
 		ed->history = ed->history->next;
 		trimed = ft_strtrim(ed->history->line);
 		str_to_list(ed, trimed);
+		ed->string_size = list_count((t_abstract_list *)ed->string);
 		free(trimed);
 	}
+	put_line(ed);
 }

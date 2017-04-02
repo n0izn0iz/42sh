@@ -1,5 +1,6 @@
-#include "event_callback_def.h"
-#include <libft.h>
+# include "event_callback_def.h"
+# include <libft.h>
+# include "abstract_list.h"
 
 static void	get_sub_string(EV_CB_ARGS)
 {
@@ -41,22 +42,27 @@ static void	get_position(EV_CB_ARGS)
 
 EV_CB_RET	event_copy(EV_CB_ARGS)
 {
+	if (if_on_multiline(ed))
+		return ;
 	get_position(ed);
 	if (ed->selected)
 	{
 		get_sub_string(ed);
 		clear_selected_pos(ed);
 	}
+	ed->string_size = list_count((t_abstract_list *)ed->string);
 }
 
 EV_CB_RET	event_cut(EV_CB_ARGS)
 {
+	if (if_on_multiline(ed))
+		return ;
 	get_position(ed);
-
 	if (ed->selected)
 	{
 		get_sub_string(ed);
 		delete_selected(ed);
 		clear_selected_pos(ed);
 	}
+	ed->string_size = list_count((t_abstract_list *)ed->string);
 }

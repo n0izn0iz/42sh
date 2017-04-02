@@ -11,8 +11,8 @@
 # include "read_input/event_callbacks/event_callback_def.h"
 # include "read_input/termcap/init_deinit.h"
 
-#include "history/history.h"
-#include "variable.h"
+# include "history/history.h"
+# include "variable.h"
 
 t_editor *get_editor()
 {
@@ -34,7 +34,7 @@ t_editor	*init_editor()
 	return (new);
 }
 
-void	add_to_string(t_editor *ed, char c)
+void	add_to_string(EV_CB_ARGS, char c)
 {
 	t_string *new;
 
@@ -51,6 +51,7 @@ void	add_to_string(t_editor *ed, char c)
 		list_push_at_pos(ed->cursor_position, (t_abstract_list **)&ed->string, (t_abstract_list *)new);
 	}
 	ed->cursor_position++;
+	ed->string_size++;
 }
 
 char *get_string_from_list(t_string *s)
