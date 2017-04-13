@@ -26,7 +26,7 @@ int	builtin_env(int argc, char **argv)
 	o = (t_opt*)memalloc_or_die(sizeof(t_opt));
 	i = retrieve_options(argc, argv, o, "i");
 	if (o->i == false)
-		tenv = get_variables_for_execution(get_shell_env()->variables);
+		tenv = get_variables_for_execution(NULL);
 	else
 	{
 		tenv = (char**)memalloc_or_die(sizeof(char*));
