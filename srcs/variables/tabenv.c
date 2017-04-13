@@ -78,15 +78,3 @@ char	**del_env(char **env, char *old_env)
 	nenv[i] = NULL;
 	return (nenv);
 }
-
-int		isenv(char *str)
-{
-	int		i;
-
-	i = -1;
-	while (str[++i] != '\0')
-		if (str[i] < 'A' || ('Z' < str[i] && str[i] < '_') ||
-				('_' < str[i] && str[i] < 'a') || str[i] > 'z')
-			return (0);
-	return (1);
-}
