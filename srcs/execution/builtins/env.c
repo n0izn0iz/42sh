@@ -21,7 +21,7 @@ int	builtin_env(int argc, char **argv, char **envp)
 
 	if ((opt = get_options_core(argc, argv)) == (char *)-1)
 		return (STATUS_FAILURE);
-	if (argc > 1 && check_only_allowed_option(opt, "i"))
+	if (ft_strchr(opt, 'i') != NULL)
 	{
 		tenv = (char**)memalloc_or_die(sizeof(char*));
 		tenv[0] = NULL;
