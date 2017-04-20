@@ -5,8 +5,7 @@
 #include "shell_env.h"
 #include "history_options.h"
 #include "file_positions.h"
-#include "history_def.h"
-#include "history_substitutions.h"
+#include "history/history_def.h"
 
 #define FILE_PERMISSION (S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH)
 

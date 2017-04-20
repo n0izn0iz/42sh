@@ -6,11 +6,10 @@
 #include "utils.h"
 #include "uint.h"
 
-#include "history.h"
 #include "history_substitutions.h"
 #include "string_substitution.h"
 
-#include "history_debug.h"
+#include "history/builtin/history.h"
 
 int			start_substitution(char **str, t_uint *start, char *hist_entry)
 {

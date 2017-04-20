@@ -6,6 +6,8 @@
 # include "uint.h"
 # include "read_input/editor/editor_struct.h" // move
 
+# define ARG_STOP "--"
+
 void					print_non_ascii_str(char const *str);
 void					print_non_ascii_char(char c);
 void					event_callback_test(void);
@@ -33,6 +35,8 @@ void					set_last_exit_status(t_uchar status);
 void					wait_for_childs();
 char					*get_options_core(int ac, char **av);
 bool					is_an_option(char **argv, int pos);
+bool					is_an_argument(char **argv, int pos);
 bool					check_only_allowed_option(char *option, char *allowed);
+size_t					number_of_argument(char **argv);
 
 #endif

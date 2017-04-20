@@ -1,7 +1,9 @@
 #ifndef HISTORY_SUBSTITUTIONS_H
 # define HISTORY_SUBSTITUTIONS_H
 
-#include "history.h"
+#include <libft.h>
+#include "break_input/token.h"
+#include "history/history_def.h"
 #include "range.h"
 
 /*

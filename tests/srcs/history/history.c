@@ -2,7 +2,7 @@
 #include "test_utils.h"
 
 #include "shell_env.h"
-#include "history/history.h"
+#include "history/builtin/history.h"
 #include "ftsh.h"
 #include "abstract_list.h"
 
@@ -46,7 +46,7 @@ void	history_print()
 	char	*av[] = {"history"};
 	// int ret;
 
-	builtin_history(1, av);
+	builtin_history(1, av, NULL);
 }
 
 void	history_print_offset()
@@ -57,9 +57,9 @@ void	history_print_offset()
 					};
 	// int ret;
 
-	builtin_history(2, av[0]);
+	builtin_history(2, av[0], NULL);
 	// CU_ASSERT_EQUAL(ret, 0)
-	builtin_history(2, av[1]);
+	builtin_history(2, av[1], NULL);
 	// CU_ASSERT_NOT_EQUAL(get_error(), 0);
 
 }
@@ -75,7 +75,7 @@ void	history_delete()
 
 	nb = list_count((t_abstract_list *)get_shell_env()->history.list) - 1;
 	//printf("nb: %zu\n", nb);
-	builtin_history(2, av[0]);
+	builtin_history(2, av[0], NULL);
 	CU_ASSERT_EQUAL(nb, list_count((t_abstract_list *)get_shell_env()->history.list));
 	nb--;
 
@@ -84,7 +84,7 @@ void	history_delete()
 		print_history(get_shell_env()->history.list, 0);
 	#endif
 
-	builtin_history(3, av[1]);
+	builtin_history(3, av[1], NULL);
 	CU_ASSERT_EQUAL(nb, list_count((t_abstract_list *)get_shell_env()->history.list));
 
 	#ifdef HISTORY_TEST_VERBOSE
@@ -102,7 +102,7 @@ void	history_to_file()
 						{"history", "-a", NULL, NULL} // should append not already appended lines
 					};
 
-	builtin_history(3, av[0]);
+	builtin_history(3, av[0], NULL);
 	CU_ASSERT_NOT_EQUAL(open("test", O_RDONLY), -1);
 
 	#ifdef HISTORY_TEST_VERBOSE
@@ -111,8 +111,8 @@ void	history_to_file()
 		print_history(get_shell_env()->history.list, 0);
 	#endif
 
-	builtin_history(3, av[1]);
-	builtin_history(2, av[2]);
+	builtin_history(3, av[1], NULL);
+	builtin_history(2, av[2], NULL);
 }
 
 void	history_from_file()
@@ -131,7 +131,7 @@ void	history_from_file()
 		print_history(history, 0);
 	#endif
 
-	builtin_history(2, av[0]);
+	builtin_history(2, av[0], NULL);
 
 	#ifdef HISTORY_TEST_VERBOSE
 		ft_printf("State of history list after reading %s\n: ", HISTFILE);
@@ -139,7 +139,7 @@ void	history_from_file()
 	#endif
 	CU_ASSERT_PTR_NOT_NULL(get_shell_env()->history.list);
 	history = get_shell_env()->history.list;
-	builtin_history(3, av[1]);
+	builtin_history(3, av[1], NULL);
 	#ifdef HISTORY_TEST_VERBOSE
 		ft_printf("State of history list after reading %s\n: ", "test");
 		print_history(get_shell_env()->history.list, 0);
@@ -153,7 +153,7 @@ void	history_clear()
 	char *av[] = {"history", "-c"};
 
 
-	builtin_history(2, av);
+	builtin_history(2, av, NULL);
 	CU_ASSERT_PTR_NULL(get_shell_env()->history.list);
 	#ifdef HISTORY_TEST_VERBOSE
 		ft_putendl("State of history after clearing all (should be empty!):");
@@ -174,7 +174,7 @@ void 	history_s_option()
 		print_history(get_shell_env()->history.list, 0);
 	#endif
 
-	builtin_history(5, av[0]);
+	builtin_history(5, av[0], NULL);
 	history = get_shell_env()->history.list;
 
 	while (history->next)
@@ -186,7 +186,7 @@ void 	history_s_option()
 		print_history(get_shell_env()->history.list, 1);
 	#endif
 
-	builtin_history(3, av[1]);
+	builtin_history(3, av[1], NULL);
 	// new = get_shell_env()->history;
 	// list_goto_last((t_abstract_list **)&new);
 	// CU_ASSERT_PTR_EQUAL(history, new);
@@ -215,7 +215,7 @@ void 	history_p_option()
 	while (history->next)
 		history = history->next;
 
-	builtin_history(4, av[0]);
+	builtin_history(4, av[0], NULL);
 	// new = get_shell_env()->history;
 	// list_goto_last((t_abstract_list **)&new);
 	// CU_ASSERT_PTR_EQUAL(history, new);
@@ -226,7 +226,7 @@ void 	history_p_option()
 	#endif
 
 	/*
-		builtin_history(2, av[1]);
+		builtin_history(2, av[1], NULL);
 	 	CU_ASSERT_STRING_EQUAL(history->next->line, "history -p");
 	 */
 }
@@ -241,9 +241,9 @@ void	history_errors()
 						{"history", "-d", "8797"}
 						};
 
-	builtin_history(2, av[0]);
-	// builtin_history(2, av[1]);
-	// builtin_history(3, av[2]);
-	builtin_history(3, av[3]);
-	builtin_history(3, av[4]);
+	builtin_history(2, av[0], NULL);
+	// builtin_history(2, av[1], NULL);
+	// builtin_history(3, av[2], NULL);
+	builtin_history(3, av[3], NULL);
+	builtin_history(3, av[4], NULL);
 }

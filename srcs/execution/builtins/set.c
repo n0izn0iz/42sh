@@ -10,6 +10,7 @@
 
 BUILTIN_RET		builtin_set(BUILTIN_ARGS)
 {
+	(void)envp;
 	t_variable	**env;
 
 	env = &get_shell_env()->variables;

@@ -3,7 +3,8 @@
 #include "init/init.h"
 #include <stdio.h>
 #include "errors.h"
-#include "history/history_substitutions.h"
+#include "history/substitution/history_substitutions.h"
+#include "history/builtin/history.h"
 #include "parse_input/print_syntax_tree.h"
 #include "execution/execute_syntax_tree.h"
 
@@ -48,6 +49,7 @@ int				main(int ac, char **av)
 	// 	else
 	// 		ft_dprintf(2, "NO OPT%d \"%s\"\n", i, av[i]);
 	// }
+	// ft_dprintf(2, "NB ARG: %d\n", number_of_argument(av));
 	// return (0);
 	///////////////////////////////////////
 

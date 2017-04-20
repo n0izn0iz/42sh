@@ -56,14 +56,16 @@ EV_CB_RET 	event_cursor_word_right(EV_CB_ARGS)
 	pos = get_cursor_vector(ed);
 	ed->cursor_position = get_next_word(ed);
 	move_cursor_to(pos, get_cursor_vector(ed), ed->term);
-
+	ed->pos = get_cursor_vector(ed);
 }
 
 EV_CB_RET 	event_cursor_word_left(EV_CB_ARGS)
 {
 	t_vec2i pos;
 
+	ed->need_refresh = true;
 	pos = get_cursor_vector(ed);
 	ed->cursor_position = get_previous_word(ed);
 	move_cursor_to(pos, get_cursor_vector(ed), ed->term);
+	ed->pos = get_cursor_vector(ed);
 }

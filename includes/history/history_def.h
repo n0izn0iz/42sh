@@ -1,7 +1,7 @@
 #ifndef HISTORY_DEF_H
 #define HISTORY_DEF_H
 
-#include "file_positions.h"
+// #include "file_positions.h"
 
 /*
 	exported env var in shells / + need absolute path
@@ -16,6 +16,13 @@ typedef struct 			s_str_subst {
 	bool				repeat_word;
 
 }						t_str_subst;
+
+typedef struct 				s_file_position
+{
+	struct s_file_position 	*next;
+	char 					*filename;
+	int 					position;
+}							t_file_position;
 
 typedef struct			s_history
 {

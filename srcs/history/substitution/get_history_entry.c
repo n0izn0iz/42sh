@@ -6,7 +6,7 @@
 #include "utils.h"
 #include "uint.h"
 
-#include "history.h"
+#include "history/history_def.h"
 #include "history_substitutions.h"
 
 char			*get_nth_entry(t_history *history, int n)

@@ -30,6 +30,7 @@ bool					variable_exist(t_variable *v, char *name);
 bool					variable_is_overwritable(t_variable *v, char *name);
 void					free_variable(t_variable *list);
 int						pop_variable_by_name(t_variable **list, char *name);
+bool					set_variable_for_export(t_variable *v, char *name);
 bool					is_a_variable(t_variable *v, char *name);
 bool					is_a_function(t_variable *v, char *name);
 

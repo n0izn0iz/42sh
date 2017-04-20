@@ -9,8 +9,9 @@
 ** '-s' option: do not display space for last str
 */
 
-int		builtin_echo(int argc, char **argv)
+BUILTIN_RET		builtin_echo(BUILTIN_ARGS)
 {
+	(void)envp;
 	int		i;
 	t_opt	*o;
 

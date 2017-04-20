@@ -5,6 +5,7 @@
 
 BUILTIN_RET 		builtin_exit(BUILTIN_ARGS)
 {
+	(void)envp;
 	t_uchar	ret;
 
 	if (argc > 1)

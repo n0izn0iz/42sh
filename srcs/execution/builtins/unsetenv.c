@@ -8,6 +8,7 @@
 
 BUILTIN_RET		builtin_unsetenv(BUILTIN_ARGS)
 {
+	(void)envp;
 	t_variable	**env;
 	size_t		i;
 

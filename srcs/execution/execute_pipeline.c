@@ -43,8 +43,6 @@ t_error_id	execute_file(t_simple_command *cmd, size_t lvl)
 t_error_id	execute_simple_command(t_simple_command *cmd, size_t lvl)
 {
 	t_error_id	ret;
-	extern char	**environ;
-	char		**environ_backup;
 	int 		*stdin_out_backup;
 
 	ret = NO_ERROR;
@@ -67,13 +65,9 @@ t_error_id	execute_simple_command(t_simple_command *cmd, size_t lvl)
 		//expand_assignments_values(cmd->assignments);
 		if (ret != NO_ERROR)
 			return (ret);
-		environ_backup = environ;
-		environ = get_variables_for_execution(cmd->assignments);
 		ret = execute_builtin(cmd, lvl + 1);
 		if (ret == NO_SUCH_BUILTIN)
 			ret = execute_file(cmd, lvl + 1);
-		ft_freetabchar(environ);
-		environ = environ_backup;
 
 		restore_stdin_stdout(stdin_out_backup);
 #ifdef FTSH_DEBUG

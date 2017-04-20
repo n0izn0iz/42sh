@@ -23,8 +23,8 @@ FEATURES
 	- [ ] echo [string...]
 	- [ ] exit [n]
 	- [ ] env [-i] [name=value]... [utility [argument...]]
-	- [x] Setenv
-	- [x] Unsetenv
+	- [x] setenv
+	- [x] unsetenv
 	- [ ] unset [-fv] name...
 	- [ ] export [-p] name[=word]...
 	- [ ] history

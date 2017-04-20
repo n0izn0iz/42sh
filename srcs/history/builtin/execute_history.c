@@ -1,5 +1,5 @@
 #include "history.h"
-#include "history_substitutions.h"
+#include "history/substitution/history_substitutions.h"
 #include "abstract_list.h"
 #include "utils.h"
 

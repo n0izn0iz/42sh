@@ -26,9 +26,8 @@ void	display_variables(bool only_exported)
 		{
 			if (env->exported == true)
 				ft_printf("%s=%s\n", env->name, env->value);
+			env = env->next;
 		}
-		ft_printf("%s=%s\n", env->name, env->value);
-		env = env->next;
 	}
 	else
 	{

@@ -19,6 +19,7 @@ static char			*get_path(int argc, char **argv)
 
 BUILTIN_RET 		builtin_cd(BUILTIN_ARGS)
 {
+	(void)envp;
 	int		ret;
 	char	*new_pwd;
 	char	*old_pwd;

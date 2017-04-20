@@ -6,7 +6,8 @@
 #include "utils.h"
 #include "uint.h"
 
-#include "history.h"
+// #include "history.h"
+#include "history/history_def.h"
 #include "history_substitutions.h"
 
 static void		save_search(char *to_find)

@@ -2,7 +2,7 @@
 #include "init/init.h"
 #include "read_input/editor/editor.h"
 #include "abstract_list.h"
-#include "history/history.h"
+#include "history/builtin/history.h"
 #include "errors.h"
 #include "utils.h"
 
