@@ -1,5 +1,5 @@
 #include "builtins.h"
-#include "opt.h"
+#include "utils.h"
 #include "libft.h"
 
 /*
@@ -13,25 +13,29 @@ BUILTIN_RET		builtin_echo(BUILTIN_ARGS)
 {
 	(void)envp;
 	int		i;
-	t_opt	*o;
+	char		*opt;
 
-	o = (t_opt*)memalloc_or_die(sizeof(t_opt));
-	i = retrieve_options(argc, argv, o, "sne");
-	while (++i < argc)
+	if ((opt = get_options_core(argc, argv)) == (char *)-1)
+		return (STATUS_FAILURE);
+	i = 1;
+	while (i < argc && argv[i][0] == '-' && argv[i][1] != '-')
+		i++;
+	while (i < argc)
 	{
-		if (o->e == true)
+		if (ft_strchr(opt, 'e') != NULL)
 		{
 			if (escape_char(argv[i]) == true)
 				break ;
 		}
 		else
 			ft_putstr(argv[i]);
-		if (o->s == false && i + 1 < argc)
+		if (ft_strchr(opt, 's') == NULL && i + 1 < argc)
 			ft_putchar(' ');
+		i++;
 	}
-	if (o->n == false)
+	if (ft_strchr(opt, 'n') == NULL)
 		ft_putchar('\n');
-	free(o);
+	free(opt);
 	return (STATUS_SUCCESS);
 }
 

@@ -3,7 +3,6 @@
 
 # include <stdbool.h>
 # include "builtins.h"
-# include "opt.h"
 
 typedef enum				e_builtin_id
 {
