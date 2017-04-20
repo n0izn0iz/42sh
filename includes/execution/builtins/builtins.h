@@ -3,12 +3,13 @@
 
 #include "variable.h"
 #include "opt.h"
+#include "../../parse_input/syntax_tree.h"
 /*# include "builtin_args.h"*/
 
 # define STATUS_SUCCESS 0
 # define STATUS_FAILURE -1
 # define BUILTIN_RET int
-# define BUILTIN_ARGS int argc, char **argv, char **envp
+# define BUILTIN_ARGS int argc, char **argv,  t_simple_command *cmd
 
 typedef BUILTIN_RET	(*t_builtin)(BUILTIN_ARGS);
 

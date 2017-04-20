@@ -4,13 +4,14 @@
 # include "shell_env.h"
 # include "abstract_list.h"
 # include "init/init.h"
+# include "../../parse_input/syntax_tree.h"
 
 # define FORBIDDEN_CHAR	"Is forbidden to use the character '='\n"
 # define USAGE 			"Usage: set <key> <value>\n"
 
 BUILTIN_RET		builtin_set(BUILTIN_ARGS)
 {
-	(void)envp;
+	(void)cmd;
 	t_variable	**env;
 
 	env = &get_shell_env()->variables;

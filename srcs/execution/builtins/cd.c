@@ -1,5 +1,6 @@
 #include "builtins.h"
 #include "variable.h"
+#include "../../parse_input/syntax_tree.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <libft.h>
@@ -19,7 +20,7 @@ static char			*get_path(int argc, char **argv)
 
 BUILTIN_RET 		builtin_cd(BUILTIN_ARGS)
 {
-	(void)envp;
+	(void)cmd;
 	int		ret;
 	char	*new_pwd;
 	char	*old_pwd;

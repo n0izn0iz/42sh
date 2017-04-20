@@ -1,11 +1,11 @@
 #include "builtins.h"
-
+#include "../../parse_input/syntax_tree.h"
 #include "utils.h"
 #include <libft.h>
 
 BUILTIN_RET 		builtin_exit(BUILTIN_ARGS)
 {
-	(void)envp;
+	(void)cmd;
 	t_uchar	ret;
 
 	if (argc > 1)

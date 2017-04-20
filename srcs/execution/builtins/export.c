@@ -5,6 +5,7 @@
 # include "abstract_list.h"
 # include "init/init.h"
 # include "utils.h"
+# include "../../parse_input/syntax_tree.h"
 
 # define USAGE	"Usage: export [-p] name[=word]...\n"
 
@@ -70,7 +71,7 @@ static void		export_option_p(t_variable *env)
 
 BUILTIN_RET		builtin_export(BUILTIN_ARGS)
 {
-	(void)envp;
+	(void)cmd;
 	t_variable	**env;
 	char		*opt;
 	bool		allowed;
