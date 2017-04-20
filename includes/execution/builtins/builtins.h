@@ -50,7 +50,7 @@ int			convert_base(int nbr, int base_from, int base_to);
 /*
 ** env.c
 */
-int			builtin_env(int argc, char **argv);
+int			builtin_env(int argc, char **argv, char **envp);
 void			run_env(int argc, char **argv, char **tenv);
 void			exec_env(char **tenv, char **cmd);
 

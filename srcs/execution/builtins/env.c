@@ -14,7 +14,7 @@
 ** transform env var from linked list to tab
 */
 
-int	builtin_env(int argc, char **argv)
+int	builtin_env(int argc, char **argv, char **envp)
 {
 	char		**tenv;
 	char		*opt;
@@ -27,7 +27,7 @@ int	builtin_env(int argc, char **argv)
 		tenv[0] = NULL;
 	}
 	else
-		tenv = get_variables_for_execution(NULL);
+		tenv = ft_tabdup(envp);
 	ft_strdel(&opt);
 	run_env(argc, argv, tenv);
 	ft_freetabchar(tenv);
