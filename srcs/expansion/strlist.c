@@ -8,6 +8,7 @@ t_strlist			*strlist_construct(char const *str)
 
 	result = memalloc_or_die(sizeof(t_strlist));
 	result->str = ft_strdup(str);
+	result->next = NULL;
 	return (result);
 }
 

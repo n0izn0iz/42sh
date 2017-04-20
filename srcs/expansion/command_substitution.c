@@ -9,8 +9,10 @@
 #include "execution/pipe.h"
 #include <stdio.h>
 #include "shell_env.h"
+#include "abstract_list.h"
+#include "break_input/quoting.h"
 
-static char					*strlist_to_str(t_strlist const *list)
+char					*strlist_to_str(t_strlist const *list)
 {
 	char	*result;
 
@@ -92,6 +94,7 @@ static void					add_substitution(t_strlist **strlist_addr
 
 		close(pipefds[1]);
 		tmp = fd_to_str(pipefds[0]);
+
 		rm_trailing_newlines(tmp);
 		strlist_append(strlist_addr, tmp);
 		free(tmp);
@@ -106,22 +109,29 @@ static t_strlist			*split_subsitutions(char const *word)
 	char const	*passv_str_start;
 	char const	*subst_end;
 	t_strlist	*result;
+	char		quoted;
 
+	quoted = 0;
 	passv_str_start = NULL;
 	result = NULL;
 	while (*word != '\0')
 	{
-		if (is_substitution_start(word))
+		if (is_quote(*word))
+			handle_quotes(*word, &quoted);
+		if (is_substitution_start(word) && \
+			(!(quoted & IS_QU_SIMPLE) || (quoted & IS_QU_DOUBLE)))
 		{
 			if (passv_str_start != NULL)
-				add_passive_string(&result, passv_str_start, word - 1);
+				add_passive_string(&result, passv_str_start, word);
 			subst_end = find_substitution_end(word + 1);
 			if (get_error() != NO_ERROR)
+				// same as quotes - go back to read_input
 				fatal_error("substitution end not found in split_subsitutions(), a substitution hasn't been correctly recognized before being expanded");
 			add_substitution(&result, word + 1, subst_end);
 			if (get_error() != NO_ERROR)
 				fatal_error("error in add_substitution() in split_subsitutions()");
 			word = subst_end + 1;
+			passv_str_start = word;
 		}
 		else
 		{

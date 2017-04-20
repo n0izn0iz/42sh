@@ -2,6 +2,7 @@
 #define RANGE_H
 
 #include <stdbool.h>
+#include "uint.h"
 
 typedef struct s_range
 {

@@ -57,14 +57,15 @@ static t_strlist	*expand_cmd_word(char const *word)
 		tmp = str;*/
 		str = command_substition(word);
 		result = field_splitting(str);
+
 		free(str);
 		it = result;
 		while (it != NULL)
 		{
 			/*str = pathname_expansion(it->str);
 			free(it->str);
-			it->str = quote_removal(str);
-			free(str);*/
+			*/
+			quote_removal(&it->str);
 			it = it->next;
 		}
 	}

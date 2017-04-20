@@ -62,7 +62,7 @@ void			apply_rules(t_tokenizer_state *state)
 #endif
 		return ;
 	}
-	// rule 5 (incomplete !! recursion not handled)
+	// rule 5 (incomplete !! recursion not handled) // not quoted if double quotes?
 	if (!is_quoted(state) && is_substitution_start(state->current_char))
 	{
 		// Weird, not referenced but necessary (or illogism)

@@ -1,10 +1,13 @@
 #ifndef STRLIST_H
 # define STRLIST_H
 
+#include <stdbool.h>
+
 typedef struct		s_strlist
 {
 	struct s_strlist	*next;
 	char				*str;
+	bool				to_split;
 }					t_strlist;
 
 t_strlist			*strlist_construct(char const *str);
