@@ -2,7 +2,6 @@
 # define BUILTINS_H
 
 #include "variable.h"
-#include "opt.h"
 #include "../../parse_input/syntax_tree.h"
 /*# include "builtin_args.h"*/
 
@@ -27,11 +26,6 @@ BUILTIN_RET			builtin_history(BUILTIN_ARGS);
 **	SUB BUILTIN
 **	
 */
-
-/*
-** options
-*/
-int			retrieve_options(int argc, char **argv, t_opt *o, char *opts);
 
 /*
 ** setenv, unsetenv
