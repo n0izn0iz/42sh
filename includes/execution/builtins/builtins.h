@@ -48,4 +48,10 @@ bool		escape(int c);
 int			octal(char *c);
 int			convert_base(int nbr, int base_from, int base_to);
 
+/*
+** env.c
+*/
+int			builtin_env(BUILTIN_ARGS);
+void			run_env(BUILTIN_ARGS);
+
 #endif
