@@ -2,12 +2,13 @@
 # define BUILTINS_H
 
 #include "variable.h"
+#include "../../parse_input/syntax_tree.h"
 /*# include "builtin_args.h"*/
 
 # define STATUS_SUCCESS 0
 # define STATUS_FAILURE -1
 # define BUILTIN_RET int
-# define BUILTIN_ARGS int argc, char **argv, char **envp
+# define BUILTIN_ARGS int argc, char **argv,  t_simple_command *cmd
 
 typedef BUILTIN_RET	(*t_builtin)(BUILTIN_ARGS);
 
@@ -40,5 +41,11 @@ bool		escape_char(char *str);
 bool		escape(int c);
 int			octal(char *c);
 int			convert_base(int nbr, int base_from, int base_to);
+
+/*
+** env.c
+*/
+int			builtin_env(BUILTIN_ARGS);
+void			run_env(BUILTIN_ARGS);
 
 #endif

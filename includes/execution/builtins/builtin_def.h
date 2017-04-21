@@ -25,7 +25,7 @@ typedef struct				s_builtin_def
 	t_builtin const				builtin;
 }							t_builtin_def;
 
-# define BUILTIN_DEF_COUNT 9
+# define BUILTIN_DEF_COUNT 10
 
 t_builtin_def const			*get_builtin_defs(void);
 t_builtin_def const			*get_matching_builtin(char const *str);

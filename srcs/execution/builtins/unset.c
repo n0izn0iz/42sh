@@ -3,6 +3,7 @@
 # include "shell_env.h"
 # include "init/init.h"
 # include "utils.h"
+# include "../../parse_input/syntax_tree.h"
 
 # define USAGE	"Usage: unset [-fv] name...\n"
 
@@ -80,7 +81,7 @@ static void		unset_option_v(t_variable **env, char **argv)
 
 BUILTIN_RET		builtin_unset(BUILTIN_ARGS)
 {
-	(void)envp;
+	(void)cmd;
 	t_variable	**env;
 	char		*opt;
 

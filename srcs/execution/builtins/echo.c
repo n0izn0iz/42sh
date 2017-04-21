@@ -1,6 +1,7 @@
 #include "builtins.h"
 #include "utils.h"
 #include "libft.h"
+#include "../../parse_input/syntax_tree.h"
 
 /*
 ** for every arguments:
@@ -11,7 +12,7 @@
 
 BUILTIN_RET		builtin_echo(BUILTIN_ARGS)
 {
-	(void)envp;
+	(void)cmd;
 	int		i;
 	char		*opt;
 
