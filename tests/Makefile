@@ -17,11 +17,10 @@ OBJS_DIRS = $(patsubst $(SRCS_ROOT)%, $(OBJS_ROOT)%, $(SRCS_DIRS))
 SRCS = $(filter %.c,$(shell find $(SRCS_ROOT) -type f))
 OBJS = $(patsubst $(SRCS_ROOT)/%.c, $(OBJS_ROOT)/%.o, $(SRCS))
 
-CUNIT_VER ?= $(shell pwd)/CUnit-2.1-3
+CUNIT_VER ?= CUnit-2.1-3
 CUNIT_SRC_ARCHIVE ?= $(CUNIT_VER).tar.bz2
-CUNIT_LOCAL_DIR ?= $(CUNIT_VER)/install
-CUNIT_STATIC_LIB ?= $(CUNIT_LOCAL_DIR)/lib/libcunit.a
-CUNIT_INCLUDE_ROOT ?= $(CUNIT_LOCAL_DIR)/include
+CUNIT_STATIC_LIB ?= $(CUNIT_VER)/CUnit/Sources/.libs/libcunit.a
+CUNIT_INCLUDE_ROOT ?= $(CUNIT_VER)/CUnit/Headers
 
 LIBFT_DIR = ../libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -44,9 +43,10 @@ $(CUNIT_STATIC_LIB):
 	cd $(CUNIT_VER) && mv configure.in configure.ac
 	cd $(CUNIT_VER) && aclocal
 	cd $(CUNIT_VER) && autoreconf -i
-	cd $(CUNIT_VER) && ./configure --prefix $(CUNIT_VER)/install
+	cd $(CUNIT_VER) && ./configure
 	make -C $(CUNIT_VER)
-	make install -C $(CUNIT_VER)
+	mkdir $(CUNIT_INCLUDE_ROOT)/CUnit
+	mv $(CUNIT_INCLUDE_ROOT)/* $(CUNIT_INCLUDE_ROOT)/CUnit
 
 
 $(PROG_NAME): $(OBJS_DIRS) $(OBJS) $(LIBFT)
