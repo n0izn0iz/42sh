@@ -84,3 +84,134 @@ pwd
 echo ----------
 echo 42sh
 commandnotfound
+
+
+## Execution ##
+ls
+cat auteur
+ls -l
+ls ~
+unsetenv PATH; ls;/bin/ls
+/bin/ls
+naritse
+./21sh -c ls
+./anrsiute
+
+### permissions
+/sbin/yubikey_shell
+yubikey_shell
+touch /tmp/toto ; chmod 000 /tmp/toto ; ./tmp/toto
+/tmp/toto
+rm -f /tmp/toto
+
+## Builtin ##
+## CD ##
+cd ; pwd
+cd ~ ; pwd
+cd / ; pwd
+cd - ; pwd
+cd . ; pwd
+cd .. ; pwd
+cd ~/. ; pwd
+cd nasrt
+cd auteur
+
+## ENV ##
+env
+export TOTO=toto
+echo $PATH
+unsetenv PATH; echo $PATH
+unsetenv TOTO
+
+## Other ##
+pwd
+exit ; ls
+
+## Point-virgule
+cat auteur ; cat auteur
+cat auteur ; cat auteur ; cat auteur
+
+## Pipe
+
+#ls | cat
+#ls | cat | cat
+#ls | cat | cat | cat
+#ls -A -l | cat -e | cat -e
+#ls | cat | wc -l
+#ls | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat \
+#   | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat
+#ls || cat
+#ls ||||||||| cat
+#ls | | ls
+#|
+
+## Redirections droite
+#ls > $tmpf ; cat $tmpf ; rm $tmpf
+#ls >> $tmpf ; cat $tmpf ; rm $tmpf
+#mkdir 2> $tmpf; cat $tmpf ; rm $tmpf
+#mkdir 2>> $tmpf; cat $tmpf ; rm $tmpf
+##"ls 2> $tmpf; cat $tmpf ; rm $tmpf" # simple avec fd2 spécifié sans erreur # marked as failed
+##"ls 2>> $tmpf; cat $tmpf ; rm $tmpf" # double avec fd2 spécifié sans erreur # marked as failed
+#ls>$tmpf ; cat $tmpf ; rm $tmpf
+#ls 1> $tmpf ; cat $tmpf
+#
+### Redirections gauche
+#cat < $tmpf
+
+## Double redirection
+#cat < $tmpf > /tmp/txt; cat /tmp/txt; rm /tmp/txt
+#cat < $tmpf >> /tmp/txt; cat /tmp/txt; rm /tmp/txt
+### Same file name
+#cat < $tmpf > $tmpf
+#"cat < $tmpf >> $tmpf" # This one is non stop adding many time which stopped the script
+
+## Redirections avec fd de sortie spécifié
+### Redirection closed
+#ls 1>&-
+#ls 2>&-
+#mkdir -p 2>&-
+#mkdir -p 1>&-
+
+### Redirection opened
+#echo test 1>&2
+#echo test >&2
+#echo test 2>&1
+#"echo test 2>>&1" # create file named "1"
+#"echo test 2<&1" # marked as failed
+
+#mkdir -p 2>&1 | cat -e
+#echo No dollar character 1>&2 | cat -e
+
+### Ridirections with pipes
+#ls | cat -e > $tmpf; cat $tmpf
+
+## cotes parsing
+echo 'test'
+echo "test"
+echo simple' "double"
+echo "6789" "2345"
+echo "6789"         "2345"
+echo "6789"  test   "2345"
+echo nasruitersaui "6789" ransuite  "2345"   anruistenrasuit
+
+# test all ASCII char: check they are used to split str like ';', '>', '<' or '|'
+echo "nrsatu;nrtsa"
+echo "rasnt>inausrt" > toto; cat toto
+echo "nrastiu<rasntiu" > toto; cat toto
+#echo \"nrau|sntiu\" | cat
+ls ; echo "nasruit><rnasuti" > toto ; cat < toto
+echo !#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_abcdefghijklmnopqrstuvwxyz{|}~
+# all ASCII char without ` and "
+
+### Spaces tests
+echo "6789      "         "    2345"
+echo "6789      "    arsnatuir     "    2345"
+echo "    67   89      "         "    23  45   "
+
+### Back cotes: pipe
+#"echo \`ls\`" # back cotes # not yet implemented
+
+## Mix
+#rm $tmpf ; ls ; pwd; ls -a | cat -e | wc > $tmpf ; cat $tmpf ; rm $tmpf
+#ls -a | cat -e | wc >> $tmpf ; cat $tmpf ; rm $tmpf
+#mkdir test ; cd test ; ls -a ; ls | cat | wc -c > fifi ; cat fifi ; rm fifi ; cd .. ; rm -rf test
