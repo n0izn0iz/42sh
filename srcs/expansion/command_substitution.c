@@ -115,7 +115,7 @@ static t_strlist			*split_subsitutions(char const *word)
 				// same as quotes - go back to read_input
 				fatal_error("substitution end not found in split_subsitutions(), a substitution hasn't been correctly recognized before being expanded");
 			add_substitution(&result, word + 1, subst_end);
-			if (get_error() != NO_ERROR)
+			if (get_error() != NO_ERROR && get_error() != CHILD_FAILURE)
 				fatal_error("error in add_substitution in split_subsitutions");
 			word = subst_end + 1;
 			passv_str_start = word;

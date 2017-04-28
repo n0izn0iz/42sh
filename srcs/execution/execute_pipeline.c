@@ -16,6 +16,8 @@ t_error_id	execute_file(t_simple_command *cmd, size_t lvl)
 	t_error_id	ret;
 
 	(void)lvl;
+	if (cmd->argv[0] == NULL)
+		fatal_error("NULL argv[0] fed to execute_file");
 #ifdef FTSH_DEBUG
 	print_n_char_fd(' ', (lvl) * 2, 2);
 	dprintf(2, "executing file %s\n", cmd->argv[0]);
@@ -23,16 +25,12 @@ t_error_id	execute_file(t_simple_command *cmd, size_t lvl)
 	if (enter_subshell() == FORKED_IN_CHILD)
 	{
 		signal(SIGINT, SIG_DFL);
-		if (cmd->argv[0])
-		{
-			pre_exec(cmd);
-	#ifdef FTSH_DEBUG
-			print_n_char_fd(' ', (lvl + 1) * 2, 2);
-	#endif
-			print_errno_error(errno, cmd->argv[0], NULL);
-			exit(EXIT_FAILURE);
-		}
-		exit(EXIT_SUCCESS);
+		pre_exec(cmd);
+#ifdef FTSH_DEBUG
+		print_n_char_fd(' ', (lvl + 1) * 2, 2);
+#endif
+		print_errno_error(errno, cmd->argv[0], NULL);
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
@@ -76,7 +74,7 @@ t_error_id	execute_simple_command(t_simple_command *cmd, size_t lvl)
 		stdin_out_backup = save_stdin_stdout();
 		ret = redirect(cmd->redirections, stdin_out_backup);
 		//expand_assignments_values(cmd->assignments);
-		if (ret != NO_ERROR)
+		if (ret != NO_ERROR || cmd->argv[0] == NULL)
 			return (ret);
 		ret = execute_builtin(cmd, lvl + 1);
 		if (ret == NO_SUCH_BUILTIN)

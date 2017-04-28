@@ -23,6 +23,8 @@ t_error_id		execute_builtin(t_simple_command *cmd, size_t lvl)
 	t_variable				*env_backup;
 	(void)lvl;
 
+	if (cmd->argv[0] == NULL)
+		fatal_error("NULL argv[0] fed to execute_builtin");
 	ret = NO_ERROR;
 	if (cmd != NULL)
 	{
