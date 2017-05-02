@@ -40,7 +40,7 @@ test:
 
 testsh:
 	@gcc -o segv testcomp/testsegv.c
-	@./test detail
+	@./test detail bonus allsh
 
 $(PROG_NAME): $(OBJS_DIRS) $(OBJS)
 	@echo "LINK   " $@

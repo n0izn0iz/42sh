@@ -196,8 +196,6 @@ chmod 755 segv
 ls ; echo "nasruit><rnasuti" > tmp ; cat < tmp
 
 ## Assignments
-
-var=val export 1>/dev/null ; echo $var
 var=val env 1>/dev/null ; echo $var
 
 #################################
@@ -298,7 +296,7 @@ echo "`ls`"
 echo '`ls`'
 
 #################################
-############# COMMA #############
+########### SEMICOLON ###########
 #################################
 # Le séparateur ";".
 
@@ -306,10 +304,6 @@ ls ; ls
 ls;ls
 cat auteur ; cat auteur
 cat auteur ; cat auteur ; cat auteur
-
-;
-;;;;;
-; ; ; ;  ;		;
 
 ###########################################################################
 ################################## TRASH ##################################
