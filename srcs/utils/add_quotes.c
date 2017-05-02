@@ -70,13 +70,11 @@ static void		add_quote_at_pos(t_string **l_str, size_t pos)
 ** quotes each word delimited by space, tab or \n
 */
 
-void			quote_per_word(char **str)
+void			quote_per_word(char **str, int pos)
 {
 	t_string	*l_str;
 	t_string	*beg;
-	int			pos;
 
-	pos = 0;
 	quote_word(str);
 	l_str = str_to_list(*str);
 	beg = l_str;
