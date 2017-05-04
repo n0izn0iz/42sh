@@ -62,6 +62,7 @@ $(OBJS_ROOT)/%.o: $(SRCS_ROOT)/%.c
 
 clean:
 	@rm -fr $(OBJS_ROOT)
+	@rm -rf $(CUNIT_VER)
 
 fclean: clean
 	@rm -f $(PROG_NAME)
