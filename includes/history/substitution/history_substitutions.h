@@ -83,7 +83,7 @@ void	remove_tail(char **str, char c);
 */
 
 void	quote_word(char **word);
-void	quote_per_word(char **str);
+void	quote_per_word(char **str, int pos);
 
 /*
 **			perform_hist_subst

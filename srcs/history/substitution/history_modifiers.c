@@ -97,7 +97,7 @@ static bool	pqx_mods(char modifier, char **str, bool *should_run, bool *quote)
 	}
 	else if (modifier == 'x')
 	{
-		quote_per_word(str);
+		quote_per_word(str, 0);
 		return (true);
 	}
 	return (false);
