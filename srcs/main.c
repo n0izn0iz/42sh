@@ -12,6 +12,7 @@
 
 static void		main_loop(void)
 {
+
 	t_shell_env *shell_env;
 
 	shell_env = get_shell_env();
