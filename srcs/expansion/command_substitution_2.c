@@ -11,6 +11,7 @@
 #include "shell_env.h"
 #include "abstract_list.h"
 #include "break_input/quoting.h"
+#include "read_input/command_substitution.h"
 
 void	add_passive_string(t_strlist **strlist_addr, char const *start,
 			char const *end)
@@ -48,4 +49,15 @@ void	rm_trailing_newlines(char *str)
 	len = ft_strlen(str);
 	while (len-- > 0 && str[len] == '\n')
 		str[len] = '\0';
+}
+
+char			*command_substition(char const *word)
+{
+	t_strlist	*strlist;
+	char		*result;
+
+	strlist = split_subsitutions(word);
+	result = strlist_to_str(strlist);
+	strlist_delete(&strlist);
+	return (result);
 }
