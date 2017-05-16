@@ -121,7 +121,10 @@ function getRandomCommand() {
 	return ($command);
 }
 
-function sig_handler($signo) {}
+function sig_handler($signo) {
+	global $handled;
+	$handled = true;
+}
 
 function compute($command) {
 	// l'usage des ticks est nécessaire depuis PHP 4.3.0
@@ -141,13 +144,15 @@ function compute($command) {
 	global $shellexec1;
 	global $shellexec2;
 	global $showOutput;
+	global $handled;
 
+	$handled = false;
 	$countAll++;
 	exec("./$shellexec1 -c '$command' 2>&1", $tmp, $return_var1);
 	exec("./$shellexec1 -c '$command' 2>/dev/null", $tmp1, $return_var11);
 	exec("$shellexec2 -c '$command' 2>&1", $tmp2, $return_var2);
 	exec("$shellexec2 -c '$command' 2>/dev/null", $tmp3, $return_var22);
-	if ($return_var1 == 2 && $return_var2 !=2)
+	if ($handled && $return_var1 == 2 && $return_var2 !=2)
 		$return_var1 = 0;
 
 	file_put_contents("res1", implode("\n", $tmp)."\n");
