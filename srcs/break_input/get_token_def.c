@@ -12,6 +12,7 @@ static t_token_def const	g_token_defs[TOKEN_DEF_COUNT] =
 	{ SEMI_TOKID, "SEMI", ";"},
 	{ OR_TOKID, "OR", "|"},
 	{ LESS_TOKID, "LESS", "<"},
+	{ DLESS_TOKID, "DLESS", "<<"},
 	{ GREAT_TOKID, "GREAT", ">"},
 	{ AND_IF_TOKID, "AND_IF", "&&"},
 	{ OR_IF_TOKID, "OR_IF", "||"},

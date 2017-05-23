@@ -1,4 +1,5 @@
 #include "redirection.h"
+#include "heredoc.h"
 #include "utils.h"
 #include <errno.h>
 
@@ -27,6 +28,8 @@ int					choose_open(t_redir_type type, char *file)
 		return (open(file, O_RDWR | O_CREAT | O_TRUNC, FILE_PERMISSION));
 	else if (type == APPEND_OUTPUT)
 		return (open(file, O_RDWR | O_CREAT | O_APPEND, FILE_PERMISSION));
+	else if (type == REDIR_INPUT_HEREDOC)
+		return (prompt_redirection_init(file));
 	else
 		return (open(file, O_RDONLY));
 }

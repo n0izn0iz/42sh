@@ -16,6 +16,7 @@ typedef enum	e_redir_type
 {
 	REDIR_OUTPUT = GREAT_TOKID,
 	REDIR_INPUT = LESS_TOKID,
+	REDIR_INPUT_HEREDOC = DLESS_TOKID,
 	APPEND_OUTPUT = DGREAT_TOKID
 }				t_redir_type;
 

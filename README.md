@@ -46,7 +46,7 @@ FEATURES
 	- [x] ctrl+C
 
 - [ ] Bonus
-	- [ ] Le heredoc "<<".
+	- [x] Le heredoc "<<".
 	- [ ] Complétion dynamique.
 	- [ ] Le Job control, job, fg et bg, et l’operateur "&".
 	- [ ] Les aggrégations de descripteurs de fichiers 2>&- etc.

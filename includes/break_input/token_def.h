@@ -11,7 +11,7 @@ typedef struct				s_token_def
 	char const *const	str;
 }							t_token_def;
 
-# define TOKEN_DEF_COUNT 12
+# define TOKEN_DEF_COUNT 13
 
 t_token_def const			*get_token_def(t_token_id id);
 t_token_def const			*get_token_defs(void);
