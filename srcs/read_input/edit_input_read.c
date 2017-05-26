@@ -16,14 +16,6 @@ static void	add_buffer_to_string(t_editor *ed, char buf[])
 	}
 }
 
-void		print_cursor_vector(t_editor *ed)
-{
-	t_vec2i						vec;
-
-	vec = get_cursor_vector(ed);
-	ft_dprintf(2, "cx: %d, cy: %d\n", vec.x, vec.y);
-}
-
 char		*start_rescue_mode(void)
 {
 	char	*line;
@@ -42,7 +34,7 @@ char		*start_normal_mode(t_editor *ed)
 
 	ed->need_refresh = true;
 	put_line(ed);
-	while ((ret = read(0, buf, EVENT_STR_MAX_LEN)) > 0)
+	while ((ret = read(0, buf, EVENT_STR_MAX_LEN)) > 0 && ed->in_edition)
 	{
 		buf[ret] = '\0';
 		def = get_matching_event_callback(buf);

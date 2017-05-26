@@ -48,21 +48,8 @@ int				convert_error_to_status(t_error_id id)
 
 int				main(int ac, char **av)
 {
-	////////// TEST GET OPTION ////////////
-	// char	*tmp = get_options_core(ac, av);
-	// ft_dprintf(2, "ALL ARGUMENT \"%s\"\n", tmp);
-	// int i = 0;
-	// while (av[++i])
-	// {
-	// 	if (is_an_option(av, i))
-	// 		ft_dprintf(2, "   OPT%d \"%s\"\n", i, av[i]);
-	// 	else
-	// 		ft_dprintf(2, "NO OPT%d \"%s\"\n", i, av[i]);
-	// }
-	// ft_dprintf(2, "NB ARG: %d\n", number_of_argument(av));
-	// return (0);
-	///////////////////////////////////////
-	signal(SIGINT, &sig_handler);
+	signal(SIGINT, sig_int);
+	signal(SIGTSTP, SIG_IGN);
 	setbuf(stdout, NULL);
 	setbuf(stderr, NULL);
 	init(ac, av);
