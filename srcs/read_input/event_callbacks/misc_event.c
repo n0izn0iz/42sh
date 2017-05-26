@@ -18,7 +18,10 @@ EV_CB_RET	ev_cancel(t_editor *ed)
 EV_CB_RET	ev_exit(t_editor *ed)
 {
 	if (ed->string_size == 0)
+	{
+		write(STDOUT_FILENO, "\x0A", 1);
 		builtin_exit(0, NULL);
+	}
 }
 
 EV_CB_RET	ev_delete(t_editor *ed)

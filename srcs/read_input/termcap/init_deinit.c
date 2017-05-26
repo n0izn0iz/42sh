@@ -61,7 +61,7 @@ void					ft_start_termcaps(void)
 		exit(-1);
 	}
 	ft_memcpy(get_term_save(), &term, sizeof(struct termios));
-	term.c_lflag &= ~(ICANON | ECHO/* | ISIG*/);
+	term.c_lflag &= ~(ICANON | ECHO);
 	term.c_cc[VMIN] = 1;
 	term.c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSADRAIN, &term) == -1)
