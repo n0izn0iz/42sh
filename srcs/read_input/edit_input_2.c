@@ -11,7 +11,7 @@ static void	add_buffer_to_string(t_editor *ed, char buf[])
 	i = -1;
 	while (buf[++i])
 	{
-		if (ft_isprint(buf[i]) || buf[i] == '\t')
+		if (ft_isprint(buf[i]))
 			add_to_string(ed, buf[i]);
 	}
 }
