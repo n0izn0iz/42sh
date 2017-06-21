@@ -27,7 +27,8 @@ static void	goto_parameter_end(char *word, t_range *delimit)
 	delimit->end++;
 	while (word[delimit->end] && word[delimit->end] != '\\' \
 			&& !is_posix_blank(word[delimit->end]) \
-			&& !is_quote(word[delimit->end]) && word[delimit->end] != '$')
+			&& !is_quote(word[delimit->end]) && word[delimit->end] != '$'
+			&& word[delimit->end] != '`')
 		delimit->end++;
 }
 
