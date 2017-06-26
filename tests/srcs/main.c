@@ -76,7 +76,7 @@ int main(int argc, char **argv)
 		{ "Init", NULL, NULL, NULL, NULL, init_tests },
 		{ "Tokenizer", NULL, NULL, NULL, NULL, tokenizer_tests },
 		{ "Bang", init_ftsh, NULL, NULL, NULL, bang_tests },
-		{ "History", NULL, NULL, NULL, NULL, history_tests },
+		// { "History", NULL, NULL, NULL, NULL, history_tests },
 		{ "Builtins", NULL, NULL, NULL, NULL, builtins_tests },
 		{ "Binary", NULL, NULL, NULL, NULL, binary_tests },
 		CU_SUITE_INFO_NULL
