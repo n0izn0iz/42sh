@@ -57,16 +57,16 @@ int main(int argc, char **argv)
 	// 	{ "History p option displays args with substitution + doesn't save", history_p_option},
 	//   CU_TEST_INFO_NULL
 	// };
-	CU_TestInfo		bang_tests[] = {
-		{ "Double bang returns last entry", bang_bang },
-		{ "!n returns nth entry, !-n returns (last - n)th entry", bang_n },
-		{ "Most recent entry starting with str (\"!str\"), or containing str (\"!?str[?\\n]\")", bang_search },
-		{ "Word selection", bang_word_selection },
-		{ "Typed line selection + quoting", bang_sharp_quotes},
-		{ "Substitution modifiers", bang_modifiers},
-		{ "Misc bang errors return -1", bang_errors },
-	  CU_TEST_INFO_NULL
-	};
+	// CU_TestInfo		bang_tests[] = {
+	// 	{ "Double bang returns last entry", bang_bang },
+	// 	{ "!n returns nth entry, !-n returns (last - n)th entry", bang_n },
+	// 	{ "Most recent entry starting with str (\"!str\"), or containing str (\"!?str[?\\n]\")", bang_search },
+	// 	{ "Word selection", bang_word_selection },
+	// 	{ "Typed line selection + quoting", bang_sharp_quotes},
+	// 	{ "Substitution modifiers", bang_modifiers},
+	// 	{ "Misc bang errors return -1", bang_errors },
+	//   CU_TEST_INFO_NULL
+	// };
 	CU_TestInfo		builtins_tests[] = {
 		{ "Check that save_the_day does it's job", cd_save_the_day },
 		CU_TEST_INFO_NULL
@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 	CU_SuiteInfo	suites[] = {
 		{ "Init", NULL, NULL, NULL, NULL, init_tests },
 		{ "Tokenizer", NULL, NULL, NULL, NULL, tokenizer_tests },
-		{ "Bang", init_ftsh, NULL, NULL, NULL, bang_tests },
+		// { "Bang", init_ftsh, NULL, NULL, NULL, bang_tests },
 		// { "History", NULL, NULL, NULL, NULL, history_tests },
 		{ "Builtins", NULL, NULL, NULL, NULL, builtins_tests },
 		{ "Binary", NULL, NULL, NULL, NULL, binary_tests },
