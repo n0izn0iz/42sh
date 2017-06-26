@@ -43,30 +43,30 @@ int main(int argc, char **argv)
 		{ "Check that init() sets the error ptr and exits without error", init_sets_error_ptr },
 		CU_TEST_INFO_NULL
 	};
-	CU_TestInfo		history_tests[] = {
-		{ "Print last 3 history\n", history_print_offset},
-		{ "Add one element to history",	history_add_one},
-		{ "Delete one specific entry", history_delete},
-		{ "History to file\n", history_to_file},
-		{ "Print history\n", history_print},
-		{ "Clear history", history_clear},
-		{ "History reinitialization", initialize_history },
-		{ "History error handling", history_errors },
-		{ "Read history from file", history_from_file},
-		{ "History s option appends args to history list as one entry + doesn't save", history_s_option},
-		{ "History p option displays args with substitution + doesn't save", history_p_option},
-	  CU_TEST_INFO_NULL
-	};
-	CU_TestInfo		bang_tests[] = {
-		{ "Double bang returns last entry", bang_bang },
-		{ "!n returns nth entry, !-n returns (last - n)th entry", bang_n },
-		{ "Most recent entry starting with str (\"!str\"), or containing str (\"!?str[?\\n]\")", bang_search },
-		{ "Word selection", bang_word_selection },
-		{ "Typed line selection + quoting", bang_sharp_quotes},
-		{ "Substitution modifiers", bang_modifiers},
-		{ "Misc bang errors return -1", bang_errors },
-	  CU_TEST_INFO_NULL
-	};
+	// CU_TestInfo		history_tests[] = {
+	// 	{ "Print last 3 history\n", history_print_offset},
+	// 	{ "Add one element to history",	history_add_one},
+	// 	{ "Delete one specific entry", history_delete},
+	// 	{ "History to file\n", history_to_file},
+	// 	{ "Print history\n", history_print},
+	// 	{ "Clear history", history_clear},
+	// 	{ "History reinitialization", initialize_history },
+	// 	{ "History error handling", history_errors },
+	// 	{ "Read history from file", history_from_file},
+	// 	{ "History s option appends args to history list as one entry + doesn't save", history_s_option},
+	// 	{ "History p option displays args with substitution + doesn't save", history_p_option},
+	//   CU_TEST_INFO_NULL
+	// };
+	// CU_TestInfo		bang_tests[] = {
+	// 	{ "Double bang returns last entry", bang_bang },
+	// 	{ "!n returns nth entry, !-n returns (last - n)th entry", bang_n },
+	// 	{ "Most recent entry starting with str (\"!str\"), or containing str (\"!?str[?\\n]\")", bang_search },
+	// 	{ "Word selection", bang_word_selection },
+	// 	{ "Typed line selection + quoting", bang_sharp_quotes},
+	// 	{ "Substitution modifiers", bang_modifiers},
+	// 	{ "Misc bang errors return -1", bang_errors },
+	//   CU_TEST_INFO_NULL
+	// };
 	CU_TestInfo		builtins_tests[] = {
 		{ "Check that save_the_day does it's job", cd_save_the_day },
 		CU_TEST_INFO_NULL
@@ -75,8 +75,8 @@ int main(int argc, char **argv)
 	CU_SuiteInfo	suites[] = {
 		{ "Init", NULL, NULL, NULL, NULL, init_tests },
 		{ "Tokenizer", NULL, NULL, NULL, NULL, tokenizer_tests },
-		{ "Bang", init_ftsh, NULL, NULL, NULL, bang_tests },
-		{ "History", NULL, NULL, NULL, NULL, history_tests },
+		// { "Bang", init_ftsh, NULL, NULL, NULL, bang_tests },
+		// { "History", NULL, NULL, NULL, NULL, history_tests },
 		{ "Builtins", NULL, NULL, NULL, NULL, builtins_tests },
 		{ "Binary", NULL, NULL, NULL, NULL, binary_tests },
 		CU_SUITE_INFO_NULL
