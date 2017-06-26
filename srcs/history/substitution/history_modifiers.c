@@ -87,7 +87,7 @@ static bool	pqx_mods(char modifier, char **str, bool *should_run, bool *quote)
 {
 	if (modifier == 'p')
 	{
-		*should_run = 0; // il manque pas une etoile ici ! /////////////////////////////////
+		*should_run = 0;
 		return (true);
 	}
 	else if (modifier == 'q')
