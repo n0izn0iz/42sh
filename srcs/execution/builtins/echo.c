@@ -6,7 +6,7 @@
 /*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 15:54:12 by asenat            #+#    #+#             */
-/*   Updated: 2017/06/26 15:54:13 by asenat           ###   ########.fr       */
+/*   Updated: 2017/06/27 13:50:21 by nmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,14 @@
 
 int		builtin_echo(int argc, char **argv)
 {
+	char *leakme;
 	int		i;
 	char	*opt;
 
+
+	leakme = malloc(1337);
+	(void)leakme;
+	leakme[0] = '\x42';
 	if ((opt = get_options_core(argc, argv)) == (char *)-1)
 		return (STATUS_FAILURE);
 	i = 1;
