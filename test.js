@@ -3,6 +3,9 @@ const fileName = 'testraw'
 const valgrindErrorCode = 242
 const failure = 1
 const success = 0
+const green   = "\033[32m";
+const red	  = "\033[31m";
+const stopColor = "\033[0m";
 var result_status = success;
 const lineReader = require('readline').createInterface({
 	terminal: false,
@@ -49,8 +52,10 @@ function exec_line(line) {
 	{
 		if (!testResult.valgrindError)
 			result_status = failure;
-		console.log('[KO] ' + line)
+		console.log(red + '[KO]' + stopColor + ' ' + line)
 	}
+	else
+		console.log(green + '[OK]' + stopColor + ' ' + line)
 	if (testResult.statusError)
 		console.log('Status diff: ' + testResult.our.status + ' (our) != ' + testResult.ref.status + ' (ref)')
 	if (testResult.outputError)
