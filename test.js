@@ -5,6 +5,7 @@ const failure = 1
 const success = 0
 var result_status = success;
 const lineReader = require('readline').createInterface({
+	terminal: false,
 	input: require('fs').createReadStream(fileName)
 })
 
