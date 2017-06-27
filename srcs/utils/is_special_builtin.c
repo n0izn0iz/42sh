@@ -3,7 +3,7 @@
 
 bool	is_special_builtin(char *builtin)
 {
-	char		*special_builtins[] = {"exit", "unset", "export", NULL};
+	static char *special_builtins[] = {"exit", "unset", "export", NULL};
 	size_t		i;
 
 	i = 0;

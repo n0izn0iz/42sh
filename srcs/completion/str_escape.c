@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   str_escape.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 15:12:00 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 15:13:28 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "completion.h"
 #include "libft.h"
 
@@ -21,7 +33,7 @@ static int		get_res_len(char *s, char *to_escape)
 	return (i);
 }
 
-static char 	is_toescape(char c, char *to_escape)
+static char		is_toescape(char c, char *to_escape)
 {
 	while (*to_escape)
 	{

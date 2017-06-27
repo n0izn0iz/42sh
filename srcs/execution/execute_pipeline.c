@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute_pipeline.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 16:00:28 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 16:01:45 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parse_input/syntax_tree.h"
 #include "errors.h"
 #include "utils.h"
@@ -5,7 +17,6 @@
 #include "execute_syntax_tree.h"
 #include "pipe.h"
 #include "exec.h"
-#include <stdio.h>
 #include "redirection.h"
 #include "expansion/expansion.h"
 #include "errno.h"
@@ -18,17 +29,10 @@ t_error_id	execute_file(t_simple_command *cmd, size_t lvl)
 	(void)lvl;
 	if (cmd->argv[0] == NULL)
 		fatal_error("NULL argv[0] fed to execute_file");
-#ifdef FTSH_DEBUG
-	print_n_char_fd(' ', (lvl) * 2, 2);
-	dprintf(2, "executing file %s\n", cmd->argv[0]);
-#endif
 	if (enter_subshell() == FORKED_IN_CHILD)
 	{
 		signal(SIGINT, SIG_DFL);
 		pre_exec(cmd);
-#ifdef FTSH_DEBUG
-		print_n_char_fd(' ', (lvl + 1) * 2, 2);
-#endif
 		print_errno_error(errno, cmd->argv[0], NULL);
 		exit(EXIT_FAILURE);
 	}
@@ -44,10 +48,6 @@ t_error_id	execute_file(t_simple_command *cmd, size_t lvl)
 		}
 		ret = get_last_exit_status();
 	}
-#ifdef FTSH_DEBUG
-	print_n_char_fd(' ', (lvl) * 2, 2);
-	dprintf(2, "done executing file %s, %s\n", cmd->argv[0], ret == NO_ERROR ? "ok" : "error");
-#endif
 	return (ret);
 }
 
@@ -59,20 +59,9 @@ t_error_id	execute_simple_command(t_simple_command *cmd, size_t lvl)
 	ret = NO_ERROR;
 	if (cmd != NULL)
 	{
-#ifdef FTSH_DEBUG
-		print_n_char_fd(' ', (lvl) * 2, 2);
-		dprintf(2, "executing simple command %s\n", cmd->argv[0]);
-		// EXECUTION CORE
-		print_n_char_fd(' ', (lvl + 1) * 2, 2);
-		dprintf(2, "expanding simple command %s\n", cmd->argv[0]);
-#endif
 		expand_cmd_words(&cmd->argv);
 		if ((ret = get_error()) != NO_ERROR)
 			return (ret);
-#ifdef FTSH_DEBUG
-		print_n_char_fd(' ', (lvl + 1) * 2, 2);
-		dprintf(2, "done expanding simple command %s\n", cmd->argv[0]);
-#endif
 		stdin_out_backup = save_stdin_stdout();
 		ret = redirect(cmd->redirections, stdin_out_backup);
 		expand_assignments_values(cmd->assignments);
@@ -84,10 +73,6 @@ t_error_id	execute_simple_command(t_simple_command *cmd, size_t lvl)
 		if (ret == NO_SUCH_BUILTIN)
 			ret = execute_file(cmd, lvl + 1);
 		restore_stdin_stdout(stdin_out_backup);
-#ifdef FTSH_DEBUG
-		print_n_char_fd(' ', (lvl) * 2, 2);
-		dprintf(2, "done executing simple command %s, %s\n", cmd->argv[0], ret == NO_ERROR ? "ok" : "error");
-#endif
 	}
 	return (ret);
 }
@@ -101,10 +86,6 @@ t_error_id	execute_pipeline(t_simple_command *pipeline, size_t lvl)
 		return (NO_ERROR);
 	if (pipeline->next == NULL)
 		return (execute_simple_command(pipeline, lvl));
-#ifdef FTSH_DEBUG
-	print_n_char_fd(' ', (lvl) * 2, 2);
-	dprintf(2, "executing pipeline\n");
-#endif
 	ft_bzero(&pipeline_state, sizeof(t_pipeline_state));
 	ret = NO_ERROR;
 	while (pipeline != NULL)
@@ -122,10 +103,5 @@ t_error_id	execute_pipeline(t_simple_command *pipeline, size_t lvl)
 		pipeline = pipeline->next;
 	}
 	wait_for_last_child(pipeline_state.last_pid);
-	//kill(0, SIGINT);
-#ifdef FTSH_DEBUG
-	print_n_char_fd(' ', (lvl) * 2, 2);
-	dprintf(2, "done executing pipeline, %s\n", pipeline_state.last_ret == NO_ERROR ? "ok" : "error");
-#endif
 	return (ret);
 }

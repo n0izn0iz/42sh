@@ -66,7 +66,6 @@ t_variable				*parse_assignments(t_token const *tokens\
 		*next_addr = create_assignment(tokens);
 		if (*next_addr == NULL)
 		{
-			// if a word is not an assignment then we're done parsing assignments
 			*remains = copy_all_tokens(tokens);
 			break ;
 		}

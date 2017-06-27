@@ -45,6 +45,9 @@ t_simple_command	*parse_simple_command(t_token const *tokens)
 	}
 	delete_all_tokens(&remains);
 	if (get_error() != NO_ERROR)
-		result = NULL; // delete_simple_command(&result);
+	{
+		delete_pipeline(&result);
+		result = NULL;
+	}
 	return (result);
 }

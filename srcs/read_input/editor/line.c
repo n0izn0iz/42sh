@@ -23,9 +23,9 @@ static void	print_command_string(t_editor *ed, char const *prompt,
 		while (i > 0 && str[i] != '\n')
 			i--;
 		if (ft_strlen(str + ++i) % (int)term_width == 0)
-      		putchar_on_tty('\n');
+			putchar_on_tty('\n');
 	}
-	else  if (ft_strlen(str) % (int)term_width == 0)
+	else if (ft_strlen(str) % (int)term_width == 0)
 		putchar_on_tty('\n');
 	free(str);
 }

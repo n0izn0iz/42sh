@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tilde_expansion.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 17:10:04 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 17:10:44 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "expansion.h"
 #include "variable.h"
 #include <libft.h>
@@ -24,7 +36,6 @@ char			*tilde_expansion(char const *word)
 			quote_word(&result);
 		}
 		else
-			// HOME not set error? ("If HOME is unset, the results are unspecified")
 			result = ft_strdup(word);
 	}
 	else

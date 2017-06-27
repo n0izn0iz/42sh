@@ -18,11 +18,11 @@ typedef struct		s_tabinfo
 	t_strlist	*list;
 }					t_tabinfo;
 
-typedef struct			s_dat
+typedef struct		s_dat
 {
 	char	buf[7];
 	void	(*action)(t_editor*, char*);
-}						t_dat;
+}					t_dat;
 
 char				*get_cur_word(int curspos, char *line);
 void				tab_display(t_editor *ed, char *line, t_tabinfo *info);
@@ -44,6 +44,5 @@ void				tab_left(t_editor *ed, char *line);
 void				tab_right(t_editor *ed, char *line);
 void				tab_close(t_editor *ed, char *line);
 void				tab_cancel(t_editor *ed, char *line);
-
 
 #endif

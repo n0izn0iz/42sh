@@ -43,8 +43,6 @@ t_event_callback_def const	*get_event_callback_defs(void);
 t_event_callback_def const	*get_matching_event_callback(
 	char const *str);
 
-void						print_event_callback_def(
-	t_event_callback_def const *def);
 void						print_event_callback_defs(void);
 
 #endif

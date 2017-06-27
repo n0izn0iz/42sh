@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   asciisort.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 15:09:49 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 16:37:26 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "completion.h"
 
-t_strlist  **getmin(t_strlist **lst)
+t_strlist	**getmin(t_strlist **lst)
 {
 	t_strlist **ret;
 
@@ -14,7 +26,7 @@ t_strlist  **getmin(t_strlist **lst)
 	return (ret);
 }
 
-void    asciisort(t_strlist **lst)
+void		asciisort(t_strlist **lst)
 {
 	char		*tmp;
 	t_strlist	**min;

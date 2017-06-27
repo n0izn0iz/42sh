@@ -18,7 +18,8 @@ t_term					*init_term(void)
 	t_term *new;
 
 	new = memalloc_or_die(sizeof(t_term));
-	if ((new->width = tgetnum("co")) == -1 || (new->rows = tgetnum("li")) == -1)
+	if ((new->width = tgetnum("co")) == -1 ||
+		(new->rows = tgetnum("li")) == -1)
 		set_rescue_mode(new);
 	if ((new->move_cursor_begining = tgetstr("cr", NULL)) == NULL)
 		set_rescue_mode(new);

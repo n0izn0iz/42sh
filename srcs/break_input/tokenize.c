@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tokenize.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 15:05:01 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 15:05:04 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "token.h"
 #include <libft.h>
 #include "tokenizer.h"
@@ -25,11 +37,6 @@ t_token			*tokenize(char const *input)
 				return (NULL);
 			}
 		}
-		// rule 1
-#ifdef TOKENIZER_DEBUG
-		print_tokenizer_state(&state);
-		ft_putstr("rule 1 aka I'M DONE MOTHERF***ERZ\n");
-#endif
 		delimit_token(&state);
 		result = state.result;
 		free(state.input);

@@ -18,9 +18,4 @@ void			parse_input(void)
 		print_name_and_error(get_error());
 	}
 	delete_all_tokens(&sh_env->tokens);
-#ifdef FTSH_DEBUG
-	ft_putendl("<syntax_tree>");
-	print_command_list(sh_env->syntax_tree, 0);
-	ft_putendl("</syntax_tree>");
-#endif
 }

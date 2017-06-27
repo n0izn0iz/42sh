@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tab_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 15:18:31 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 15:22:48 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "completion.h"
 #include "variable.h"
 #include "put_on_tty.h"
@@ -42,7 +54,7 @@ void		add_file(t_strlist **lst, struct dirent *dir)
 void		clear_down(t_editor *ed)
 {
 	int save;
-	
+
 	save = ed->cursor_position;
 	tputs(tgetstr("sc", 0), 1, ft_rputchar);
 	while (ed->cursor_position < ed->string_size)
@@ -52,7 +64,7 @@ void		clear_down(t_editor *ed)
 	tputs(tgetstr("rc", 0), 1, ft_rputchar);
 }
 
- char		*replace_home(char *s)
+char		*replace_home(char *s)
 {
 	char	*ret;
 	int		found;

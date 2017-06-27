@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   delimit_token.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 14:50:21 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 14:53:32 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "tokenizer.h"
 #include "utils.h"
 #include <libft.h>
@@ -19,10 +31,6 @@ void			delimit_token(t_tokenizer_state *state)
 	if (*str != '\0')
 	{
 		token = construct_token(str, *state->current_char);
-#ifdef TOKENIZER_DEBUG
-		ft_putstr("DELIMITED: ");
-		print_token(token);
-#endif
 		list_push_back((t_abstract_list**)&state->result
 			, (t_abstract_list*)token);
 	}

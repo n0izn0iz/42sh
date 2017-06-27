@@ -17,8 +17,6 @@ static void		main_loop(void)
 	shell_env = get_shell_env();
 	set_error(NO_ERROR);
 	read_input();
-	/*if (get_error() != NO_ERROR)
-		return ;*/
 	break_input();
 	if (get_error() != NO_ERROR)
 		return ;
@@ -44,8 +42,6 @@ int				main(int ac, char **av)
 {
 	signal(SIGINT, sig_int);
 	signal(SIGTSTP, SIG_IGN);
-	setbuf(stdout, NULL);
-	setbuf(stderr, NULL);
 	init(ac, av);
 	while (get_shell_env()->should_run)
 		main_loop();

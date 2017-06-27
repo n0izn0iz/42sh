@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command_substitution.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 17:05:43 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 17:19:54 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "expansion.h"
 #include "break_input/substitution.h"
 #include <stdlib.h>
@@ -13,7 +25,7 @@
 #include "break_input/quoting.h"
 #include "read_input/command_substitution.h"
 
-static void rm_backslashes(char *str)
+static void		rm_backslashes(char *str)
 {
 	while (*str)
 	{
@@ -41,7 +53,7 @@ static void		add_substitution(t_strlist **strlist_addr
 	int					pipefds[2];
 	char				**argv;
 	t_simple_command	cmd;
-	char*				cmd_str;
+	char				*cmd_str;
 
 	cmd_str = strdup_until(start, end);
 	rm_backslashes(cmd_str);
@@ -75,15 +87,8 @@ static void		handle_subst_quotes(char *quoted, char const **word, \
 	(*word)++;
 }
 
-static void		handle_passv_str(char const *passv_str_start, \
-								char const *word, t_strlist **result)
-{
-	if (passv_str_start != NULL)
-		add_passive_string(result, passv_str_start, word);
-}
-
 t_strlist		*split_subsitutions_run(char const *word,
-				char const *passv_str_start,
+				char const *p_str_start,
 				t_strlist *result, char quoted)
 {
 	char const	*subst_end;
@@ -91,23 +96,23 @@ t_strlist		*split_subsitutions_run(char const *word,
 	while (word != NULL && *word != '\0')
 	{
 		if (is_quote(*word))
-			handle_subst_quotes(&quoted, &word, &passv_str_start);
+			handle_subst_quotes(&quoted, &word, &p_str_start);
 		else if (is_substitution_start(word) && \
 			(!(quoted & IS_QU_SIMPLE) || (quoted & IS_QU_DOUBLE)))
 		{
-			handle_passv_str(passv_str_start, word, &result);
+			(p_str_start) ? add_passive_string(&result, p_str_start, word) : 0;
 			subst_end = find_substitution_end(word + 1);
 			add_substitution(&result, word + 1, subst_end);
 			word = subst_end + (subst_end != NULL ? 1 : 0);
-			passv_str_start = word;
+			p_str_start = word;
 		}
 		else
 		{
-			if (passv_str_start == NULL)
-				passv_str_start = word;
+			if (p_str_start == NULL)
+				p_str_start = word;
 			word++;
 		}
 	}
-	handle_passv_str(passv_str_start, word, &result);
+	(p_str_start) ? add_passive_string(&result, p_str_start, word) : 0;
 	return (result);
 }

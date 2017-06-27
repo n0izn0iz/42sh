@@ -84,7 +84,10 @@ char			**get_variables_for_execution(t_variable *assignments)
 	if (assignments)
 		size += list_count((t_abstract_list *)assignments) - reassigned;
 	if (!size)
+	{
+		delete_all_variables(&e);
 		return (NULL);
+	}
 	while (assignments)
 	{
 		setenv_as(&e, assignments->name, assignments->value, true);

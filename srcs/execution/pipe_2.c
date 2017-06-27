@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe_2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 16:02:03 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 16:04:23 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipe.h"
 #include <sys/wait.h>
 #include <errno.h>
 #include <stdio.h>
 
-void				create_next_pipe(t_pipeline_state *state)
+void			create_next_pipe(t_pipeline_state *state)
 {
 	state->next_pipe = create_pipe();
 	if (state->next_pipe == NULL)
@@ -13,7 +25,7 @@ void				create_next_pipe(t_pipeline_state *state)
 	}
 }
 
-void				overwrite_fd(int src, int overwrited)
+void			overwrite_fd(int src, int overwrited)
 {
 	int		ret;
 
@@ -25,7 +37,7 @@ void				overwrite_fd(int src, int overwrited)
 	}
 }
 
-static void				pipe_me_in_2(t_pipeline_state *state, pid_t fork_ret)
+static void		pipe_me_in_2(t_pipeline_state *state, pid_t fork_ret)
 {
 	if (fork_ret == FORKED_IN_CHILD)
 	{
@@ -44,7 +56,7 @@ static void				pipe_me_in_2(t_pipeline_state *state, pid_t fork_ret)
 	}
 }
 
-int					pipe_me_in(t_pipeline_state *state)
+int				pipe_me_in(t_pipeline_state *state)
 {
 	pid_t	fork_ret;
 
@@ -55,7 +67,7 @@ int					pipe_me_in(t_pipeline_state *state)
 	}
 	if (state->next_pipe != NULL)
 	{
-		ft_putendl_fd("42sh: state->next_pipe set while entering pipe_me_in", 2);
+		ft_putendl_fd("42sh: state->next_pipe set while at pipe_me_in", 2);
 		exit(EXIT_FAILURE);
 	}
 	if (!state->last_cmd)

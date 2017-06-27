@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expansion.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 17:06:50 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 17:07:26 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "expansion.h"
 #include <stdlib.h>
 #include "strlist.h"
@@ -30,7 +42,7 @@ static t_strlist	*expand_cmd_word(t_strlist *result, char *str,
 	return (result);
 }
 
-static char	*expand_assignment(char const *str)
+static char			*expand_assignment(char const *str)
 {
 	char *tmp;
 
@@ -45,7 +57,7 @@ static char	*expand_assignment(char const *str)
 	return (tmp);
 }
 
-void		expand_assignments_values(t_variable *assignments)
+void				expand_assignments_values(t_variable *assignments)
 {
 	while (assignments != NULL)
 	{
@@ -53,8 +65,6 @@ void		expand_assignments_values(t_variable *assignments)
 		assignments = assignments->next;
 	}
 }
-
-
 
 void				expand_cmd_words(char ***words_addr)
 {

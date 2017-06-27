@@ -1,26 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_list.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 15:27:14 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 15:34:22 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <libft.h>
+#define N_ERRNO 133
+#define N_ERRNO_BASE 34
 
-#define	N_ERRNO 133
-#define	N_ERRNO_BASE 34
-
-char const	*get_system_error(int signum)
+static char const	*g_defs_else[N_ERRNO - N_ERRNO_BASE + 1] =
 {
-	static char const *errno_base_defs[N_ERRNO_BASE + 1] =
-	{"None", "Operation not permitted", "No such file or directory",
-	"No such process", "Interrupted system call", "I/O error", "No such device or address",
-	"Argument list too long", "Exec format error", "Bad file number",
-	"No child processes", "Try again", "Out of memory", "Permission denied",
-	"Bad address", "Block device required", "Device or resource busy",
-	"File exists", "Cross-device link", "No such device", "Not a directory",
-	"Is a directory", "Invalid argument", "File table overflow",
-	"Too many open files", "Not a typewriter", "Text file busy",
-	"File too large", "No space left on device", "Illegal seek",
-	"Read-only file system", "Too many links", "Broken pipe",
-	"Math argument out of domain of func", "Math result not representable",
-	};
-
-	static char const *defs_else[N_ERRNO - N_ERRNO_BASE + 1] =
-	{"Resource deadlock would occur",
+	"Resource deadlock would occur",
 	"File name too long",
 	"No record locks available",
 	"Invalid system call number",
@@ -119,6 +115,23 @@ char const	*get_system_error(int signum)
 	"State not recoverable",
 	"Operation not possible due to RF-kill",
 	"Memory page has hardware error",
+};
+
+char const	*get_system_error(int signum)
+{
+	static char const *errno_base_defs[N_ERRNO_BASE + 1] = {
+		"None", "Operation not permitted", "No such file or directory",
+		"No such process", "Interrupted system call", "I/O error",
+		"Argument list too long", "Exec format error", "Bad file number",
+		"No child processes", "Try again", "Out of memory", "Permission denied",
+		"Bad address", "Block device required", "Device or resource busy",
+		"File exists", "Cross-device link", "No such device", "Not a directory",
+		"Is a directory", "Invalid argument", "File table overflow",
+		"Too many open files", "Not a typewriter", "Text file busy",
+		"File too large", "No space left on device", "Illegal seek",
+		"Read-only file system", "Too many links", "Broken pipe",
+		"Math argument out of domain of func", "Math result not representable",
+		"No such device or address"
 	};
 
 	if (signum >= 0 && signum <= N_ERRNO_BASE)
@@ -127,7 +140,7 @@ char const	*get_system_error(int signum)
 	}
 	else if (signum > N_ERRNO_BASE && signum <= N_ERRNO)
 	{
-		return (defs_else[signum - N_ERRNO_BASE - 1]);
+		return (g_defs_else[signum - N_ERRNO_BASE - 1]);
 	}
 	return ("");
 }

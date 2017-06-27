@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parameter_expansion.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 17:09:04 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 17:09:30 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <libft.h>
 #include "variable.h"
 #include "range.h"
 #include "utils.h"
 #include "break_input/quoting.h"
-
 #include "expansion.h"
 
 static bool	next_dollar_sign(char const *word, t_range *delimit, char *quoted)

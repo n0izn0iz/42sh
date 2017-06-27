@@ -6,8 +6,8 @@
 #include "errors.h"
 #include "shell_env.h"
 
-static void		parse_pipeline_sub(size_t splited_len, t_token **splited,
-		t_simple_command *result, t_simple_command  **it)
+static void			parse_pipeline_sub(size_t splited_len, t_token **splited,
+		t_simple_command *result, t_simple_command **it)
 {
 	size_t				u;
 	t_token				*trimed;

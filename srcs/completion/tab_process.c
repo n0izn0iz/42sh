@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tab_process.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 15:16:16 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 15:21:10 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <libft.h>
 #include "read_input/event_callbacks/event_callback_def.h"
 #include "completion.h"
 
-char	*get_cur_word(int curspos, char *line)
+char				*get_cur_word(int curspos, char *line)
 {
 	int		i;
 	char	*ret;
@@ -17,12 +29,12 @@ char	*get_cur_word(int curspos, char *line)
 	return (replace_home(ret));
 }
 
-static t_strlist		*get_files(char *path)
+static t_strlist	*get_files(char *path)
 {
 	char			**split;
 	DIR				*dir;
 	struct dirent	*dirent;
-	t_strlist			*l;
+	t_strlist		*l;
 
 	split = ft_splitfilepath(path);
 	if (!(dir = (split[0]) ? opendir(split[0]) : opendir(".")))
@@ -42,7 +54,7 @@ static t_strlist		*get_files(char *path)
 	return (l);
 }
 
-void			choice_tab(t_editor *ed, char *line, char *path)
+void				choice_tab(t_editor *ed, char *line, char *path)
 {
 	t_strlist	*l;
 

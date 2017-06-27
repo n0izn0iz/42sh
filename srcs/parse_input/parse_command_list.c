@@ -19,8 +19,8 @@ static bool		last_is_semi(t_token const *tokens)
 		return (false);
 }
 
-static void	parse_cmd_list_sub(size_t splited_len, t_token **splited,
-	t_command_list *result, t_command_list  **it)
+static void		parse_cmd_list_sub(size_t splited_len, t_token **splited,
+	t_command_list *result, t_command_list **it)
 {
 	size_t			u;
 

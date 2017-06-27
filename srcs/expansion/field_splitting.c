@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   field_splitting.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 17:07:33 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 17:21:03 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "expansion.h"
 #include "strlist.h"
 #include <stdlib.h>
@@ -8,7 +20,7 @@
 #include "abstract_list.h"
 #include "break_input/quoting.h"
 
-static void	end_of_quote(char const *word, t_range *delimit)
+static void		end_of_quote(char const *word, t_range *delimit)
 {
 	char	quote;
 
@@ -24,13 +36,14 @@ static void	end_of_quote(char const *word, t_range *delimit)
 	}
 }
 
-static void	skip_posix_blanks(char const *word, int *i)
+static void		skip_posix_blanks(char const *word, int *i)
 {
 	while (word[*i] && (is_posix_blank(word[*i]) || word[*i] == '\n'))
 		(*i)++;
 }
 
-static void	add_field(char const *word, t_strlist **result, t_range *delimit)
+static void		add_field(char const *word, t_strlist **result,
+					t_range *delimit)
 {
 	char		*tmp;
 
@@ -46,7 +59,7 @@ static void	add_field(char const *word, t_strlist **result, t_range *delimit)
 ** 	that did not occur in double-quotes and split into fields
 */
 
-t_strlist	*field_splitting(char const *word)
+t_strlist		*field_splitting(char const *word)
 {
 	t_strlist	*result;
 	t_range		delimit;

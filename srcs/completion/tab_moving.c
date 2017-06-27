@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tab_moving.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 15:16:12 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 15:16:14 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "completion.h"
 
 static void		increase_tabindex(int inc)
@@ -14,30 +26,26 @@ static void		increase_tabindex(int inc)
 		inf->selected_index += len;
 }
 
-void		tab_down(t_editor *ed, char *line)
+void			tab_down(t_editor *ed, char *line)
 {
-	//update_winsize(ed);
 	increase_tabindex(1);
 	tab_display(ed, line, get_tabinfo());
 }
 
-void		tab_up(t_editor *ed, char *line)
+void			tab_up(t_editor *ed, char *line)
 {
-	//update_winsize(ed);
 	increase_tabindex(-1);
 	tab_display(ed, line, get_tabinfo());
 }
 
-void		tab_right(t_editor *ed, char *line)
+void			tab_right(t_editor *ed, char *line)
 {
-	//update_winsize(ed);
 	increase_tabindex(get_tabinfo()->nb_lines);
 	tab_display(ed, line, get_tabinfo());
 }
 
-void		tab_left(t_editor *ed, char *line)
+void			tab_left(t_editor *ed, char *line)
 {
-	//update_winsize(ed);
 	increase_tabindex(-get_tabinfo()->nb_lines);
 	tab_display(ed, line, get_tabinfo());
 }

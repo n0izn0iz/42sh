@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tab_display.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 15:23:08 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 15:23:11 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <libft.h>
 #include "completion.h"
 #include "ansii_colors.h"
@@ -90,7 +102,7 @@ static int		true_display(t_strlist *files, t_editor *ed)
 	return (1);
 }
 
-void      tab_display(t_editor *ed, char *line, t_tabinfo *info)
+void			tab_display(t_editor *ed, char *line, t_tabinfo *info)
 {
 	int save;
 

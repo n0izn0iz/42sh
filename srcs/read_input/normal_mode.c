@@ -35,7 +35,7 @@ static void		handle_etx(t_editor *ed)
 
 static bool		handle_control_char(t_editor *ed, char buf[])
 {
-	if (buf[0] == ETX  && buf[1] == NUL)
+	if (buf[0] == ETX && buf[1] == NUL)
 	{
 		handle_etx(ed);
 		return (true);

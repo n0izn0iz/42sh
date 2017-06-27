@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   substitution.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/26 15:03:35 by asenat            #+#    #+#             */
+/*   Updated: 2017/06/26 15:03:37 by asenat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdbool.h>
 #include <libft.h>
 #include "errors.h"
@@ -15,8 +27,6 @@ char const	*find_substitution_end(char const *str)
 	set_error(NO_ERROR);
 	while (*str)
 	{
-		/* <backslash> shall retain its literal meaning, except when
-			followed by: '$', '`', or <backslash> */
 		if (*str == '\\' && (*(str + 1) == '`' || *(str + 1) == '\\'))
 			str++;
 		else if (*str == '`')
