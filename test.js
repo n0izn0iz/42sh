@@ -71,4 +71,4 @@ lineReader.on('line', function (line) {
 	if (line != "" && line[0] != '#')
 		exec_line(line)
 })
-return (result_status)
+process.exit(result_status)
