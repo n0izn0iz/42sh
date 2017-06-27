@@ -1,6 +1,9 @@
 const child_process = require('child_process')
 const fileName = 'testraw'
 const valgrindErrorCode = 242
+const failure = 1
+const success = 0
+var result_status = success;
 const lineReader = require('readline').createInterface({
 	input: require('fs').createReadStream(fileName)
 })
@@ -21,7 +24,7 @@ function exec_valgrind(cmd)
 {
 	var result = {}
 	try {
-		child_process.execFileSync('valgrind', ['-v', '--leak-check=full', '--error-exitcode=' + valgrindErrorCode, './42sh', '-c', cmd], {encoding: 'ascii', stdio: 'pipe'})
+		result.output = child_process.execFileSync('valgrind', ['--leak-check=full', '--error-exitcode=' + valgrindErrorCode, './42sh', '-c', cmd], {encoding: 'ascii', stdio: 'pipe'})
 		result.status = 0
 	} catch (exception) {
 		result.status = exception.status
@@ -40,9 +43,13 @@ function exec_line(line) {
 	}
 	testResult.statusError = (testResult.our.status !== testResult.ref.status)
 	testResult.outputError = (testResult.our.output !== testResult.ref.output)
-	testResult.valgrindError = (testResult.valgrind.status == 242)
+	testResult.valgrindError = (testResult.valgrind.status == valgrindErrorCode)
 	if (testResult.statusError || testResult.outputError || testResult.valgrindError)
+	{
+		if (!testResult.valgrindError)
+			result_status = failure;
 		console.log('[KO] ' + line)
+	}
 	if (testResult.statusError)
 		console.log('Status diff: ' + testResult.our.status + ' (our) != ' + testResult.ref.status + ' (ref)')
 	if (testResult.outputError)
@@ -58,3 +65,4 @@ lineReader.on('line', function (line) {
 	if (line != "" && line[0] != '#')
 		exec_line(line)
 })
+return (result_status)
