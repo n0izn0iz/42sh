@@ -67,11 +67,11 @@ function exec_line(line) {
 		console.log('Memory leak(s)!')
 }
 
-lineReader.on('line', (line) => {
+lineReader.on('line', function(line) {
 	if (line != "" && line[0] != '#')
 		exec_line(line)
 })
 
-lineReader.on('end', () => {
+lineReader.on('end', function() {
 	process.exit(result_status)
 })
