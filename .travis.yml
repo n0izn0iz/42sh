@@ -6,4 +6,4 @@ before_install:
 - sudo apt-get install nodejs
 - sudo apt-get install bash
 - sudo apt-get install valgrind
-script: make && make test && node test.js
+script: make && make test && node -v && node test.js
