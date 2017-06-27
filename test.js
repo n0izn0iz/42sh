@@ -19,6 +19,7 @@ function exec_cmd(shell, cmd)
 		result.output = child_process.execFileSync(shell, ['-c', cmd], {encoding: 'ascii', stdio: 'pipe'})
 		result.status = 0
 	} catch (exception) {
+		console.log(exception);
 		result.status = exception.status
 	}
 	return (result)
@@ -31,6 +32,7 @@ function exec_valgrind(cmd)
 		result.output = child_process.execFileSync('valgrind', ['--leak-check=full', '--error-exitcode=' + valgrindErrorCode, './42sh', '-c', cmd], {encoding: 'ascii', stdio: 'pipe'})
 		result.status = 0
 	} catch (exception) {
+		console.log(exception);
 		result.status = exception.status
 	}
 	return (result)
