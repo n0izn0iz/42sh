@@ -6,7 +6,7 @@
 /*   By: asenat <asenat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 15:53:03 by asenat            #+#    #+#             */
-/*   Updated: 2017/06/26 15:53:28 by asenat           ###   ########.fr       */
+/*   Updated: 2017/06/28 15:22:37 by asenat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 int		builtin_exit(int argc, char **argv)
 {
 	int			ret;
-	t_shell_env	*shell_env;
 
 	if (argc > 1)
 		ret = ft_atoi(argv[1]);
@@ -33,7 +32,5 @@ int		builtin_exit(int argc, char **argv)
 	{
 		ret = ret % 256;
 	}
-	shell_env = get_shell_env();
-	hist_to_file(shell_env->history.list, shell_env->history.histfile, true);
 	exit(ret);
 }
