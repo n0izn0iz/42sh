@@ -44,29 +44,6 @@ static char	*get_path_to_ftsh(char const *ftsh_name)
 	return (ft_strjoinf(cwd, ft_strjoin("/", ftsh_name), 3));
 }
 
-static void	set_histfile(t_shell_env *shell_env)
-{
-	char	*tmp;
-
-	tmp = ft_strsub(shell_env->path_to_42sh, 0, \
-		ft_strlen(shell_env->path_to_42sh) - ft_strlen(SHNAME) - 1);
-	shell_env->history.histfile = ft_strjoin(tmp, "/.");
-	ft_strdel(&tmp);
-	tmp = ft_strjoin(shell_env->history.histfile, SHNAME);
-	ft_strdel(&shell_env->history.histfile);
-	shell_env->history.histfile = ft_strjoin(tmp, "_history");
-	ft_strdel(&tmp);
-}
-
-static void	set_as_appended(t_history *history)
-{
-	while (history)
-	{
-		history->appended = true;
-		history = history->next;
-	}
-}
-
 void		init(int ac, char **av)
 {
 	t_shell_env		*shell_env;
@@ -81,8 +58,5 @@ void		init(int ac, char **av)
 	init_variables_list(shell_env);
 	set_default_variables();
 	parse_options(ac, av, shell_env);
-	set_histfile(shell_env);
-	load_history(shell_env, shell_env->history.histfile, 0);
-	set_as_appended(shell_env->history.list);
 	shell_env->should_run = true;
 }
